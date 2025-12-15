@@ -23,9 +23,7 @@ touch backend/misc/docker-compose.yml backend/misc/.env backend/misc/requirement
 
 echo "Backend structure created successfully!"
 
-# ---------------------------
-# Frontend structure
-# ---------------------------
+
 echo "Creating frontend structure..."
 
 # Web frontend
