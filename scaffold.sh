@@ -2,9 +2,6 @@
 
 echo "Starting project scaffolding..."
 
-# ---------------------------
-# Backend structure
-# ---------------------------
 echo "Creating backend structure..."
 
 # Gateway
