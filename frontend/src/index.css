@@ -1,0 +1,62 @@
+/* Navbar */
+.nav {
+  @apply fixed top-0 w-full flex items-center z-50;
+  height: var(--nav-height, 96px);
+  background: transparent;
+  transition: all 0.35s ease;
+  font-family: var(--font-heading);
+}
+
+/* Navbar when scrolled */
+.nav.scrolled {
+  height: 70px;
+  background: hsl(222 47% 4% / 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid hsl(222 30% 18%);
+}
+
+/* Logo */
+.logo {
+  font-weight: 900;
+  font-size: 1.5rem;
+  color: hsl(var(--foreground));
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.logo span {
+  color: hsl(var(--accent));
+}
+
+/* Links */
+.links a {
+  color: hsl(var(--muted-foreground));
+  font-weight: 600;
+  margin-left: 1.5rem;
+  transition: color 0.3s ease;
+}
+
+.links a:hover,
+.links a.activeLink {
+  color: hsl(var(--accent));
+}
+
+/* Book button */
+.bookButton {
+  @apply px-5 py-2 rounded-md font-bold;
+  background: hsl(var(--accent));
+  color: hsl(var(--background));
+  transition: all 0.3s ease;
+}
+
+.bookButton:hover {
+  background: hsl(192 91% 45%); /* Slightly darker hover for accent */
+  transform: translateY(-2px);
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .links {
+    display: none; /* Hide links on mobile, could use a mobile menu */
+  }
+}
