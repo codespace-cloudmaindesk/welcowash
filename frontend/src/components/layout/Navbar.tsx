@@ -15,14 +15,12 @@ export const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  // Scroll effect
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Lock scroll when mobile menu open
   useEffect(() => {
     document.body.style.overflow = isMenuOpen ? 'hidden' : '';
     return () => { document.body.style.overflow = ''; };
@@ -31,12 +29,10 @@ export const Navbar: React.FC = () => {
   return (
     <nav className={`${styles.nav} ${isScrolled ? styles.scrolled : ''}`}>
       <div className={styles.container}>
-        {/* Logo */}
         <NavLink to="/" className={styles.logo}>
           WELCO<span>WASH</span>
         </NavLink>
 
-        {/* Desktop Links */}
         <ul className={styles.links}>
           {NAV_LINKS.map(link => (
             <li key={link.path}>
@@ -48,12 +44,8 @@ export const Navbar: React.FC = () => {
               </NavLink>
             </li>
           ))}
-          <li>
-            <button className={styles.bookButton}>Book Now</button>
-          </li>
         </ul>
 
-        {/* Hamburger */}
         <button
           className={`${styles.hamburger} ${isMenuOpen ? styles.open : ''}`}
           onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -65,7 +57,6 @@ export const Navbar: React.FC = () => {
         </button>
       </div>
 
-      {/* Mobile Menu */}
       <div className={`${styles.mobileMenu} ${isMenuOpen ? styles.mobileMenuOpen : ''}`}>
         {NAV_LINKS.map(link => (
           <NavLink

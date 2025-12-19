@@ -1,9 +1,9 @@
-import React, { JSX } from "react";
+import { JSX } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 // Component Imports
-import { Navbar } from "./components/Navbar/Navbar"; // Points to the index.ts in the Navbar folder
-import Home from "./pages/Home";
+import { Navbar } from "./components/layout/Navbar";
+import Home from "./pages/Home/Home";
 
 // Create placeholder components for other pages to avoid errors
 const Services = () => <div style={{ paddingTop: '100px' }}>Services Page</div>;
