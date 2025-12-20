@@ -4,7 +4,7 @@
   --background: 222 47% 11%;
   --foreground: 210 40% 98%;
 
-  /* Primary / Accent colors - Cyan/Blue based on existing hints */
+  /* Primary / Accent colors - Cyan/Blue */
   --primary: 192 91% 50%;
   --primary-foreground: 222 47% 11%;
 
@@ -27,4 +27,15 @@ body {
   font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
   min-height: 100vh;
+}
+
+/* Utilities */
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-linear-to-r from-white to-white/50;
+  }
+
+  .shadow-glow {
+    box-shadow: 0 0 20px rgba(6, 182, 212, 0.5);
+  }
 }

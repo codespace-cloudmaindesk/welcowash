@@ -3,11 +3,14 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 // Component Imports
 import { Navbar } from "./components/layout/Navbar";
-import Home from "./pages/Home/Home";
+import Footer from "./components/layout/Footer";
+import Home from "./pages/Home";
+import { GalleryPage } from "./pages/Gallery";
+import HowItWorks from "./pages/HowItWorks";
 
 // Create placeholder components for other pages to avoid errors
 const Services = () => <div style={{ paddingTop: '100px' }}>Services Page</div>;
-const Gallery = () => <div style={{ paddingTop: '100px' }}>Gallery Page</div>;
+
 
 function App(): JSX.Element {
   return (
@@ -23,14 +26,15 @@ function App(): JSX.Element {
           {/* Define the URL paths for your detailing business */}
           <Route path="/" element={<Home />} />
           <Route path="/services" element={<Services />} />
-          <Route path="/gallery" element={<Gallery />} />
+          <Route path="/gallery" element={<GalleryPage />} />
+          <Route path="/how-it-works" element={<HowItWorks />} />
 
           {/* Fallback for 404 - Page Not Found */}
           <Route path="*" element={<Home />} />
         </Routes>
       </main>
 
-      {/* You would typically add a <Footer /> here later */}
+      <Footer />
     </Router>
   );
 }

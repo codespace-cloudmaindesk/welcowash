@@ -20,7 +20,7 @@
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid hsl(222 30% 20% / 0.5);
-  box-shadow: 0 10px 40px rgba(0,0,0,0.35);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
 }
 
 /* Container */
@@ -105,7 +105,7 @@
 .bookButton:hover {
   transform: translateY(-3px);
   background-position: 100% 50%;
-  box-shadow: 0 12px 32px rgba(6,182,212,0.35);
+  box-shadow: 0 12px 32px rgba(6, 182, 212, 0.35);
 }
 
 /* Hamburger */
@@ -128,9 +128,11 @@
 .hamburger.open span:nth-child(1) {
   transform: translateY(8px) rotate(45deg);
 }
+
 .hamburger.open span:nth-child(2) {
   opacity: 0;
 }
+
 .hamburger.open span:nth-child(3) {
   transform: translateY(-8px) rotate(-45deg);
 }
@@ -142,11 +144,13 @@
 
 @media (max-width: 992px) {
   .links {
-    display: none; /* hide desktop links */
+    display: none;
+    /* hide desktop links */
   }
 
   .hamburger {
-    display: flex; /* show hamburger */
+    display: flex;
+    /* show hamburger */
   }
 
   .mobileMenu.mobileMenuOpen {

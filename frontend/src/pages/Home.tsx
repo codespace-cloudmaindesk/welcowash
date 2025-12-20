@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { AnimatedCounter } from "../../components/ui/animated-counter";
-import { Button } from '../../components/ui/Button';
+import { AnimatedCounter } from "../components/ui/animated-counter";
+import { Button } from '../components/ui/Button';
 import { ArrowRight, Play, Droplets, Map, CarTaxiFront } from 'lucide-react';
 import styles from './Home.module.css';
+import GallerySection from './Gallery';
+import { BookingModal } from '../components/BookingModal'; // Import Modal
 
 const STATS = [
   { icon: Droplets, label: 'Washes Completed', targetValue: 1.5, suffix: 'M+', precision: 1 },
@@ -12,8 +14,12 @@ const STATS = [
 ];
 
 const Home: React.FC = () => {
+  const [isBookingOpen, setBookingOpen] = useState(false); // Modal State
+
   return (
     <div className={styles.homeContainer}>
+      <BookingModal isOpen={isBookingOpen} onClose={() => setBookingOpen(false)} />
+
       <section className={styles.hero}>
         {/* Background Visuals */}
         <div className={styles.spotlight} />
@@ -33,17 +39,17 @@ const Home: React.FC = () => {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto mb-10 md:mb-20 animate-slide-up">
-            <Button asChild size="xl" variant="hero" className="w-full sm:w-auto min-w-[200px]">
-              <Link to="#pricing" className="inline-flex items-center justify-center gap-2">
-                Book Your Wash
+            <Button size="xl" variant="hero" className="w-full sm:w-auto min-w-[200px]" onClick={() => setBookingOpen(true)}>
+              <span className="inline-flex items-center justify-center gap-2">
+                Book a Wash
                 <ArrowRight className="w-5 h-5" />
-              </Link>
+              </span>
             </Button>
 
             <Button asChild variant="glass" size="xl" className="w-full sm:w-auto min-w-[200px]">
-              <Link to="#gallery" className="inline-flex items-center justify-center gap-2">
+              <Link to="/gallery" className="inline-flex items-center justify-center gap-2">
                 <Play className="w-4 h-4 fill-current" />
-                View Our Work
+                Gallery
               </Link>
             </Button>
           </div>
@@ -72,6 +78,8 @@ const Home: React.FC = () => {
           </div>
         </div>
       </section>
+
+      <GallerySection />
     </div>
   );
 };
