@@ -316,7 +316,7 @@ const GalleryGrid: React.FC<{
     return (
         <div className="min-h-screen bg-background">
             {/* No Sticky Header for Inline, Filters are part of content flow */}
-            <div className="sticky top-20 z-10 py-4 bg-background/95 backdrop-blur-sm border-b border-white/5 mb-8">
+            <div className="sticky top-20 z-10 py-4 bg-background/95 backdrop-blur-sm mb-8">
                 {FilterBar}
             </div>
             {GridContent}
