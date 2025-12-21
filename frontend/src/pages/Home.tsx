@@ -1,32 +1,39 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { Link } from 'react-router-dom';
-import { AnimatedCounter } from "../components/ui/animated-counter";
+import { AnimatedCounter } from '../components/ui/animated-counter';
 import { Button } from '../components/ui/Button';
 import { ArrowRight, Play, Droplets, Map, CarTaxiFront } from 'lucide-react';
 import styles from './Home.module.css';
 import GallerySection from './Gallery';
-import { BookingModal } from '../components/BookingModal'; // Import Modal
+import { BookingModal } from '../components/BookingModal';
 
-const STATS = [
-  { icon: Droplets, label: 'Washes Completed', targetValue: 1.5, suffix: 'M+', precision: 1 },
-  { icon: Map, label: 'Cities Covered', targetValue: 50, suffix: '+', precision: 0 },
-  { icon: CarTaxiFront, label: 'Customer Satisfaction', targetValue: 98, suffix: '%', precision: 0 },
+// Move stats data outside the component for scalability
+export const STATS = [
+  { id: 'washes', icon: Droplets, label: 'Washes Completed', targetValue: 1.5, suffix: 'M+', precision: 1 },
+  { id: 'cities', icon: Map, label: 'Cities Covered', targetValue: 50, suffix: '+', precision: 0 },
+  { id: 'satisfaction', icon: CarTaxiFront, label: 'Customer Satisfaction', targetValue: 98, suffix: '%', precision: 0 },
 ];
 
 const Home: React.FC = () => {
-  const [isBookingOpen, setBookingOpen] = useState(false); // Modal State
+  // Modal state
+  const [isBookingOpen, setBookingOpen] = useState(false);
+
+  // Handler for opening modal
+  const openBooking = useCallback(() => setBookingOpen(true), []);
+  const closeBooking = useCallback(() => setBookingOpen(false), []);
 
   return (
     <div className={styles.homeContainer}>
-      <BookingModal isOpen={isBookingOpen} onClose={() => setBookingOpen(false)} />
+      {/* Booking Modal */}
+      <BookingModal isOpen={isBookingOpen} onClose={closeBooking} />
 
+      {/* Hero Section */}
       <section className={styles.hero}>
-        {/* Background Visuals */}
         <div className={styles.spotlight} />
         <div className="absolute bottom-0 left-0 right-0 h-48 bg-linear-to-t from-background to-transparent z-10" />
 
         <div className={styles.heroContent}>
-          {/* Main Heading */}
+          {/* Heading */}
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading font-black mb-4 tracking-tighter leading-[1.1] animate-slide-up text-center">
             PREMIUM CAR CARE <br />
             <span className="text-gradient">DELIVERED TO YOU.</span>
@@ -39,7 +46,13 @@ const Home: React.FC = () => {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto mb-10 md:mb-20 animate-slide-up">
-            <Button size="xl" variant="hero" className="w-full sm:w-auto min-w-[200px]" onClick={() => setBookingOpen(true)}>
+            <Button
+              size="xl"
+              variant="hero"
+              className="w-full sm:w-auto min-w-[200px]"
+              onClick={openBooking}
+              aria-label="Book a Car Wash"
+            >
               <span className="inline-flex items-center justify-center gap-2">
                 Book a Wash
                 <ArrowRight className="w-5 h-5" />
@@ -56,17 +69,14 @@ const Home: React.FC = () => {
 
           {/* Stats Section */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-16 w-full max-w-5xl mt-12 animate-fade-in relative z-20">
-            {STATS.map((stat, index) => (
-              <div key={index} className="flex flex-col items-center text-center group">
+            {STATS.map((stat) => (
+              <div key={stat.id} className="flex flex-col items-center text-center group">
                 <div className="mb-4 p-3 rounded-2xl bg-secondary/30 border border-border/50 group-hover:border-primary/40 transition-colors">
-                  <stat.icon className="h-6 w-6 text-primary" />
+                  <stat.icon className="h-6 w-6 text-primary" aria-hidden="true" />
                 </div>
 
                 <div className="text-4xl md:text-5xl font-black tracking-tighter tabular-nums">
-                  <AnimatedCounter
-                    targetValue={stat.targetValue}
-                    precision={stat.precision}
-                  />
+                  <AnimatedCounter targetValue={stat.targetValue} precision={stat.precision} />
                   <span className="text-primary">{stat.suffix}</span>
                 </div>
 
@@ -79,6 +89,7 @@ const Home: React.FC = () => {
         </div>
       </section>
 
+      {/* Gallery Section */}
       <GallerySection />
     </div>
   );

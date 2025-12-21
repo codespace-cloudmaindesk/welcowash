@@ -9,19 +9,19 @@ import { Button } from '../components/ui/Button';
 const getImageUrl = (name: string) => new URL(`../assets/${name}`, import.meta.url).href;
 
 const GALLERY_ITEMS = [
-    { id: 1, img: 'work-1.jpg', before: 'work-1.jpg', category: "Exterior Detail", title: "Ceramic Coating Finish" },
-    { id: 2, img: 'work-2.jpg', before: 'work-2.jpg', category: "Luxury Care", title: "Premium Hand Wash" },
-    { id: 3, img: 'work-3.jpg', before: 'work-3.jpg', category: "Interior Finish", title: "Leather Restoration" },
-    { id: 4, img: 'work-4.jpg', before: 'work-4.jpg', category: "Full Service", title: "Complete Detailing" },
-    { id: 5, img: 'work-5.jpg', before: 'work-5.jpg', category: "Paint Correction", title: "Swirl Mark Removal" },
-    { id: 6, img: 'work-6.jpg', before: 'work-6.jpg', category: "Protection", title: "Wax & Sealant" },
+    { id: 1, after: 'work-1.jpg', before: 'work-1.jpg', category: "Exterior Detail", title: "Ceramic Coating Finish" },
+    { id: 2, after: 'work-2.jpg', before: 'work-2.jpg', category: "Luxury Care", title: "Premium Hand Wash" },
+    { id: 3, after: 'work-3.jpg', before: 'work-3.jpg', category: "Interior Finish", title: "Leather Restoration" },
+    { id: 4, after: 'work-4.jpg', before: 'work-4.jpg', category: "Full Service", title: "Complete Detailing" },
+    { id: 5, after: 'work-5.jpg', before: 'work-5.jpg', category: "Paint Correction", title: "Swirl Mark Removal" },
+    { id: 6, after: 'work-6.jpg', before: 'work-6.jpg', category: "Protection", title: "Wax & Sealant" },
 
-    { id: 7, img: 'work-1.jpg', before: 'work-1.jpg', category: "Exterior Detail", title: "Wheel Polishing" },
-    { id: 8, img: 'work-3.jpg', before: 'work-3.jpg', category: "Interior Finish", title: "Upholstery Deep Clean" },
-    { id: 9, img: 'work-2.jpg', before: 'work-2.jpg', category: "Luxury Care", title: "Engine Bay Detail" },
-    { id: 10, img: 'work-4.jpg', before: 'work-4.jpg', category: "Full Service", title: "Fleet Maintenance" },
-    { id: 11, img: 'work-5.jpg', before: 'work-5.jpg', category: "Paint Correction", title: "Scratch Repair" },
-    { id: 12, img: 'work-6.jpg', before: 'work-6.jpg', category: "Protection", title: "Glass Coating" },
+    { id: 7, after: 'work-1.jpg', before: 'work-1.jpg', category: "Exterior Detail", title: "Wheel Polishing" },
+    { id: 8, after: 'work-3.jpg', before: 'work-3.jpg', category: "Interior Finish", title: "Upholstery Deep Clean" },
+    { id: 9, after: 'work-2.jpg', before: 'work-2.jpg', category: "Luxury Care", title: "Engine Bay Detail" },
+    { id: 10, after: 'work-4.jpg', before: 'work-4.jpg', category: "Full Service", title: "Fleet Maintenance" },
+    { id: 11, after: 'work-5.jpg', before: 'work-5.jpg', category: "Paint Correction", title: "Scratch Repair" },
+    { id: 12, after: 'work-6.jpg', before: 'work-6.jpg', category: "Protection", title: "Glass Coating" },
 ];
 
 const CATEGORIES = ["All", ...new Set(GALLERY_ITEMS.map(item => item.category))];
@@ -146,7 +146,7 @@ const ImageLightbox: React.FC<{
 
     // Use Portal for Lightbox to ensure it's on top of everything
     return createPortal(
-        <div className="fixed inset-0 z-[2200] flex items-center justify-center bg-background/95 backdrop-blur-3xl animate-fade-in">
+        <div className="fixed inset-0 z-2200 flex items-center justify-center bg-background/95 backdrop-blur-3xl animate-fade-in">
             <style>{`
                 @keyframes fade-in {
                     from { opacity: 0; }
@@ -158,7 +158,7 @@ const ImageLightbox: React.FC<{
             `}</style>
 
             {/* Close */}
-            <button onClick={onClose} className="absolute top-6 right-6 p-2 rounded-full bg-white/5 hover:bg-white/10 text-white transition-colors z-[2210] border border-white/5 cursor-pointer">
+            <button onClick={onClose} className="absolute top-6 right-6 p-2 rounded-full bg-white/5 hover:bg-white/10 text-white transition-colors z-2210 border border-white/5 cursor-pointer">
                 <X className="w-8 h-8" />
             </button>
 
@@ -175,7 +175,7 @@ const ImageLightbox: React.FC<{
                 <div className="w-full aspect-video md:h-[70vh] rounded-2xl overflow-hidden shadow-2xl ring-1 ring-white/10 bg-muted relative">
                     <BeforeAfterSlider
                         before={currentItem.before}
-                        after={currentItem.img}
+                        after={currentItem.after}
                         title={currentItem.title}
                     />
                 </div>
@@ -257,17 +257,17 @@ const GalleryGrid: React.FC<{
                     <div
                         key={item.id}
                         onClick={() => onImageClick(index, filteredItems)}
-                        className="group relative aspect-[4/3] rounded-xl overflow-hidden cursor-pointer bg-muted border border-white/5 hover:border-primary/50 transition-all duration-500 hover:shadow-[0_0_30px_rgba(6,182,212,0.3)] hover:-translate-y-2 animate-grid-item"
+                        className="group relative aspect-4/3 rounded-xl overflow-hidden cursor-pointer bg-muted border border-white/5 hover:border-primary/50 transition-all duration-500 hover:shadow-[0_0_30px_rgba(6,182,212,0.3)] hover:-translate-y-2 animate-grid-item"
                         style={{ animationDelay: `${index * 50}ms` }}
                     >
                         <img
-                            src={getImageUrl(item.img)}
+                            src={getImageUrl(item.after)}
                             alt={item.title}
                             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-90 group-hover:opacity-100"
                             loading="lazy"
                         />
                         {/* Improved Gradient Overlay */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
+                        <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
 
                         <div className="absolute bottom-0 left-0 p-5 w-full translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
                             <p className="text-primary text-[10px] font-bold uppercase tracking-widest mb-1">{item.category}</p>
@@ -285,9 +285,9 @@ const GalleryGrid: React.FC<{
 
     if (mode === 'modal') {
         const modalContent = (
-            <div className="fixed inset-0 z-[2000] bg-background/98 backdrop-blur-sm overflow-y-auto animate-fade-in">
+            <div className="fixed inset-0 z-2000 bg-background/98 backdrop-blur-sm overflow-y-auto animate-fade-in">
                 {/* Modal Header */}
-                <div className="sticky top-0 z-[2010] bg-background/80 backdrop-blur-xl border-b border-white/5 shadow-lg">
+                <div className="sticky top-0 z-2010 bg-background/80 backdrop-blur-xl border-b border-white/5 shadow-lg">
                     <div className="container mx-auto px-4 h-20 flex items-center justify-between">
                         <div className="flex items-center gap-3">
                             <div className="p-2 rounded-lg bg-primary/10">
@@ -410,7 +410,7 @@ export const GallerySection: React.FC = () => {
                             onClick={() => openLightboxDirect(index)}
                         >
                             <img
-                                src={getImageUrl(item.img)}
+                                src={getImageUrl(item.after)}
                                 alt={item.title}
                                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                                 loading="lazy"

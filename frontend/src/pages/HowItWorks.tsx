@@ -76,7 +76,7 @@ export const HowItWorks: React.FC = () => {
 
                   {/* Step Icon & Number */}
                   <div className="mb-8 relative">
-                    <div className={`w-24 h-24 rounded-3xl bg-linear-to-br ${step.color} p-[1px] transition-all duration-500 group-hover:scale-110 group-hover:rotate-6 shadow-2xl group-hover:shadow-[0_0_40px_rgba(6,182,212,0.4)]`}>
+                    <div className={`w-24 h-24 rounded-3xl bg-linear-to-br ${step.color} p-px transition-all duration-500 group-hover:scale-110 group-hover:rotate-6 shadow-2xl group-hover:shadow-[0_0_40px_rgba(6,182,212,0.4)]`}>
                       <div className="w-full h-full bg-[#0B1120] rounded-[22px] flex items-center justify-center relative overflow-hidden">
                         <step.icon className="w-10 h-10 text-white transition-transform duration-500 group-hover:scale-110 relative z-10" />
 

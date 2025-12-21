@@ -11,6 +11,8 @@ import HowItWorks from "./pages/HowItWorks";
 // Create placeholder components for other pages to avoid errors
 const Services = () => <div style={{ paddingTop: '100px' }}>Services Page</div>;
 
+// const Pricing = () => <div style={{ paddingTop: '100px' }}>Pricing Page</div>;
+// const Enterprise = () => <div style={{ paddingTop: '100px' }}>Enterprise Page</div>;
 
 function App(): JSX.Element {
   return (

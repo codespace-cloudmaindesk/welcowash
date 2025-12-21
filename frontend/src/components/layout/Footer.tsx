@@ -19,7 +19,7 @@ const Footer = () => {
                                 <Droplets className="w-5 h-5 text-white" />
                             </div>
                             <span className="text-xl font-heading font-bold text-white tracking-tight">
-                                WELCO<span className="text-gradient">WASH</span>
+                                WELCO<span className="text-transparent bg-clip-text bg-linear-to-r from-primary to-blue-600">WASH</span>
                             </span>
                         </a>
                         <p className="text-muted-foreground text-sm mb-6 max-w-xs leading-relaxed">
