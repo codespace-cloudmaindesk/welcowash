@@ -39,6 +39,7 @@ const Home: React.FC = () => {
             <span className="text-gradient">DELIVERED TO YOU.</span>
           </h1>
 
+
           {/* Subtitle */}
           <p className="text-lg md:text-xl text-muted-foreground/80 max-w-xl mx-auto mb-10 animate-slide-up text-center leading-relaxed">
             Enjoy professional, on-demand car wash services anytime, anywhere, delivered straight to your doorstep with instant tracking and loyalty rewards.
