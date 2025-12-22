@@ -8,14 +8,14 @@ export const navbarStyles = {
 
     logo: {
         wrap: 'group flex items-center gap-3 select-none',
-        icon: 'w-10 h-10 rounded-xl bg-linear-to-br from-cyan-400 to-blue-600 flex items-center justify-center shadow-lg transition-transform group-hover:scale-110',
+        icon: 'w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center shadow-lg transition-transform group-hover:scale-110',
         text: 'text-xl font-extrabold tracking-tight',
-        accent: 'text-transparent bg-clip-text bg-linear-to-r from-primary to-blue-600',
+        accent: 'text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-600',
     },
 
     link: {
         base: 'relative font-semibold uppercase tracking-wider transition-all duration-300',
-        desktop: 'text-sm after:content-[""] after:block after:h-[2px] after:bg-linear-to-r after:from-cyan-400 after:to-purple-500 after:w-0 hover:after:w-full',
+        desktop: 'text-sm after:content-[""] after:block after:h-[2px] after:bg-gradient-to-r after:from-cyan-400 after:to-purple-500 after:w-0 hover:after:w-full',
         mobile: 'text-xl text-gray-300 hover:text-cyan-400 hover:scale-105 transition-transform transition-colors duration-300 hover:drop-shadow-[0_0_10px_rgba(56,189,248,0.7)]',
         active: 'text-white',
     },
@@ -34,5 +34,5 @@ export const navbarStyles = {
         closed: 'translate-x-full',
     },
 
-    cta: 'bg-linear-to-r from-blue-500 to-cyan-400 text-white uppercase font-bold px-6 py-3 rounded-full shadow-lg transition-transform hover:scale-105',
+    cta: 'bg-gradient-to-r from-blue-500 to-cyan-400 text-white uppercase font-bold px-6 py-3 rounded-full shadow-lg transition-transform hover:scale-105',
 };

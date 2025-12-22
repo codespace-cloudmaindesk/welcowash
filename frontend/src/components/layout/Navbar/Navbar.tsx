@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Droplets } from 'lucide-react';
 import { cn } from '../../../lib/utils/utils';
+import { BookingModal } from '../../BookingModal';
 
 import { NAV_LINKS } from './Navbar.constants';
 import { navbarStyles as s } from './Navbar.styles';
@@ -9,6 +10,7 @@ import { navbarStyles as s } from './Navbar.styles';
 export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
 
   // Scroll detection
   useEffect(() => {
@@ -105,9 +107,19 @@ export const Navbar = () => {
           )}
         >
           {renderLinks(true)}
-          <button className={s.cta}>Book Now</button>
+          <button
+            onClick={() => {
+              setIsMenuOpen(false);
+              setIsBookingModalOpen(true);
+            }}
+            className={s.cta}>Book Now
+          </button>
         </div>
       </div>
+      <BookingModal
+        isOpen={isBookingModalOpen}
+        onClose={() => setIsBookingModalOpen(false)}
+      />
     </nav>
   );
 };
