@@ -36,3 +36,4 @@ export const navbarStyles = {
 
     cta: 'bg-gradient-to-r from-blue-500 to-cyan-400 text-white uppercase font-bold px-6 py-3 rounded-full shadow-lg transition-transform hover:scale-105',
 };
+
