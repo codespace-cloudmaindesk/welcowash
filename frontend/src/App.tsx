@@ -10,9 +10,8 @@ import HowItWorks from "./pages/HowItWorks";
 
 // Create placeholder components for other pages to avoid errors
 const Services = () => <div style={{ paddingTop: '100px' }}>Services Page</div>;
-
-// const Pricing = () => <div style={{ paddingTop: '100px' }}>Pricing Page</div>;
-// const Enterprise = () => <div style={{ paddingTop: '100px' }}>Enterprise Page</div>;
+const Pricing = () => <div style={{ paddingTop: '100px' }}>Coming Soon</div>;
+const Enterprise = () => <div style={{ paddingTop: '100px' }}>Coming Soon</div>;
 
 function App(): JSX.Element {
   return (
@@ -30,6 +29,8 @@ function App(): JSX.Element {
           <Route path="/services" element={<Services />} />
           <Route path="/gallery" element={<GalleryPage />} />
           <Route path="/how-it-works" element={<HowItWorks />} />
+          <Route path="/pricing" element={<Pricing />} />
+          <Route path="/enterprise" element={<Enterprise />} />
 
           {/* Fallback for 404 - Page Not Found */}
           <Route path="*" element={<Home />} />
