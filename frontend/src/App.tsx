@@ -4,9 +4,10 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 // Component Imports
 import { Navbar } from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
-import Home from "./pages/Home";
+import Home from "./pages/home/Home";
 import { GalleryPage } from "./pages/Gallery";
-import HowItWorks from "./pages/HowItWorks";
+import { HowItWorks } from "./pages/process";
+
 
 // Create placeholder components for other pages to avoid errors
 const Services = () => <div style={{ paddingTop: '100px' }}>Services Page</div>;
