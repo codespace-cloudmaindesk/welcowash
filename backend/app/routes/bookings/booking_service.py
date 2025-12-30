@@ -8,10 +8,10 @@ class DetailingJobService:
     @staticmethod
     async def create_job(db: AsyncSession, job_data: DetailingJobCreate) -> DetailingService:
         """
-        Create a DetailingService record from the provided job data and persist it to the database.
+        Create and persist a DetailingService using the provided job data.
         
         Parameters:
-            job_data (DetailingJobCreate): Data used to populate the new detailing job record.
+            job_data (DetailingJobCreate): Data used to populate the new detailing job.
         
         Returns:
             DetailingService: The created DetailingService instance reflecting the persisted database state.
@@ -25,9 +25,10 @@ class DetailingJobService:
     @staticmethod
     async def assign_technician(db: AsyncSession, job_id: str, technician_id: str, eta: str = None):
         """
-        Assigns a technician to an existing detailing job, updates its status to en_route, and optionally sets an estimated arrival time.
+        Assign a technician to a detailing job, set the job's status to en_route, and optionally record an estimated arrival time.
         
         Parameters:
+            db (AsyncSession): Database session used to load and persist the job.
             job_id (str): Identifier of the detailing job to update.
             technician_id (str): Identifier of the technician to assign.
             eta (str, optional): Estimated arrival time to set on the job, if provided.
@@ -37,6 +38,7 @@ class DetailingJobService:
         
         Raises:
             ValueError: If no job with the given `job_id` exists.
+            ValueError: If the job's current status is completed or cancelled and therefore cannot accept a technician assignment.
         """
         job = await db.get(DetailingService, job_id)
         if not job:
@@ -54,10 +56,10 @@ class DetailingJobService:
     @staticmethod
     async def get_all_jobs(db: AsyncSession):
         """
-        Fetch all rows from the detailing_service table.
+        Retrieve all records from the `detailing_service` table.
         
         Returns:
-            A list of rows representing every record in the `detailing_service` table.
+            A list of rows corresponding to every record in the `detailing_service` table.
         """
         result = await db.execute("SELECT * FROM detailing_service")
         return result.fetchall()

@@ -9,16 +9,17 @@ router = APIRouter(prefix="/bookings", tags=["Detailing Jobs"])
 @router.post("", response_model=DetailingJobRead)
 async def create_job(job: DetailingJobCreate, db: AsyncSession = Depends(get_db)):
     """
-    Create a new detailing job from the provided input.
+    Create a detailing job from the provided input.
     
     Parameters:
-        job (DetailingJobCreate): Data required to create the detailing job.
+        job (DetailingJobCreate): Input data for the new detailing job.
     
     Returns:
         DetailingJobRead: The created detailing job.
     
     Raises:
-        HTTPException: Raised with status code 400 when job creation fails.
+        HTTPException: Raised with status code 400 when the input is invalid.
+        HTTPException: Raised with status code 500 for internal server errors.
     """
     try:
         return await DetailingJobService.create_job(db, job)
@@ -30,18 +31,18 @@ async def create_job(job: DetailingJobCreate, db: AsyncSession = Depends(get_db)
 @router.patch("/{job_id}/assign-technician", response_model=DetailingJobRead)
 async def assign_technician(job_id: str, technician_id: str, eta: str = None, db: AsyncSession = Depends(get_db)):
     """
-    Assigns a technician to a detailing job and optionally sets an estimated time of arrival.
+    Assigns a technician to a detailing job and optionally sets the technician's estimated time of arrival (ETA).
     
     Parameters:
-        job_id (str): Identifier of the detailing job to update.
-        technician_id (str): Identifier of the technician to assign.
-        eta (str, optional): Estimated time of arrival for the technician.
+        job_id: Identifier of the detailing job to update.
+        technician_id: Identifier of the technician to assign.
+        eta: Optional ETA for the technician.
     
     Returns:
         The updated detailing job as a DetailingJobRead.
     
     Raises:
-        HTTPException: 404 if the job or technician cannot be found or the assignment is invalid.
+        HTTPException: 404 if the job or technician cannot be found or the assignment is invalid; 500 for internal server errors.
     """
     try:
         return await DetailingJobService.assign_technician(db, job_id, technician_id, eta)

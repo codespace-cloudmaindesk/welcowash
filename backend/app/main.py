@@ -9,10 +9,9 @@ app = FastAPI(title="WelcomWash API")
 @app.on_event("startup")
 async def init_tables():
     """
-    Create all ORM tables declared on Base.metadata using the application's database engine.
+    Ensure all ORM tables declared in Base.metadata exist in the configured database.
     
-    This function opens a connection to the configured engine and ensures every table defined in
-    Base.metadata is created in the target database. Intended to be executed during application startup.
+    Designed to be executed during application startup to create any missing tables required by the ORM.
     """
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
@@ -38,4 +37,10 @@ app.include_router(bookings.router)
 
 @app.get("/")
 def root():
+    """
+    Health-check endpoint that reports the application status.
+    
+    Returns:
+        dict: JSON-serializable object with a single key `"message"` set to `"Backend is running"`.
+    """
     return {"message": "Backend is running"}
