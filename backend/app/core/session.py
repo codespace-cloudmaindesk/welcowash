@@ -11,5 +11,11 @@ AsyncSessionLocal = async_sessionmaker(autocommit=False, autoflush=False, bind=e
 Base = declarative_base()
 
 async def get_db() -> AsyncSession:
+    """
+    Provide a scoped AsyncSession for use by callers.
+    
+    Yields:
+        AsyncSession: A database session instance opened for the current context; it is closed when the consumer exits the surrounding context.
+    """
     async with AsyncSessionLocal() as session:
         yield session

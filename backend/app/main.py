@@ -9,6 +9,12 @@ app = FastAPI(title="WelcomWash API")
 
 @app.on_event("startup")
 async def init_tables():
+    """
+    Create all ORM tables declared on Base.metadata using the application's database engine.
+    
+    This function opens a connection to the configured engine and ensures every table defined in
+    Base.metadata is created in the target database. Intended to be executed during application startup.
+    """
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
 
