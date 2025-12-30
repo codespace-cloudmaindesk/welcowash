@@ -3,7 +3,6 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app.routes.bookings import bookings
 from app.core.session import engine, Base
-from app.routes.bookings.models import DetailingService
 
 app = FastAPI(title="WelcomWash API")
 

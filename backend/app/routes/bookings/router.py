@@ -10,15 +10,19 @@ router = APIRouter(prefix="/bookings", tags=["Detailing Jobs"])
 async def create_job(job: DetailingJobCreate, db: AsyncSession = Depends(get_db)):
     try:
         return await DetailingJobService.create_job(db, job)
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e)) from e
     except Exception as e:
-        raise HTTPException(status_code=400, detail=str(e))
+        raise HTTPException(status_code=500, detail="Internal server error") from e
 
 @router.patch("/{job_id}/assign-technician", response_model=DetailingJobRead)
-async def assign_technician(job_id: str, technician_id: str, eta: str = None, db: AsyncSession = Depends(get_db)):
+async def assign_technician(job_id: str, technician_id: str, eta: str | None = None, db: AsyncSession = Depends(get_db)):
     try:
         return await DetailingJobService.assign_technician(db, job_id, technician_id, eta)
     except ValueError as e:
-        raise HTTPException(status_code=404, detail=str(e))
+        raise HTTPException(status_code=404, detail=str(e)) from e
+    except Exception as e:
+        raise HTTPException(status_code=500, detail="Internal server error") from e
 
 @router.get("/", response_model=list[DetailingJobRead])
 async def get_jobs(db: AsyncSession = Depends(get_db)):

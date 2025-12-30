@@ -1,7 +1,6 @@
 import uuid
-from sqlalchemy import Column, String, DateTime, Enum, ForeignKey
+from sqlalchemy import Column, String, DateTime, Enum
 from sqlalchemy.sql import func
-from sqlalchemy.orm import relationship
 from app.core.session import Base
 from app.routes.bookings.service_status import ServiceStatus
 
