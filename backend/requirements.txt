@@ -1,2 +1,7 @@
 fastapi
 uvicorn
+SQLAlchemy
+aiosqlite
+python-dotenv
+email-validator
+

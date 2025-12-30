@@ -1,13 +1,23 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.routes import users, bookings
+
+from app.routes.bookings import bookings
+from app.core.session import engine, Base
+from app.routes.bookings.models import DetailingService
 
 app = FastAPI(title="WelcomWash API")
+
+@app.on_event("startup")
+async def init_tables():
+    async with engine.begin() as conn:
+        await conn.run_sync(Base.metadata.create_all)
 
 # Configure CORS
 origins = [
     "http://localhost:5000",  # React Frontend (Vite)
     "http://localhost:3000",  # Common alternative
+    "http://localhost:5173",  # Vite default
+    "http://127.0.0.1:5173",
 ]
 
 app.add_middleware(
@@ -18,7 +28,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.include_router(users.router)
+
 app.include_router(bookings.router)
 
 @app.get("/")
