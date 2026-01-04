@@ -59,8 +59,9 @@ class DetailingJobService:
         Returns:
             A list of rows representing every record in the `detailing_service` table.
         """
-        result = await db.execute("SELECT * FROM detailing_service")
-        return result.fetchall()
+        from sqlalchemy import select
+        result = await db.execute(select(DetailingService))
+        return result.scalars().all()
 
     @staticmethod
     async def get_job_by_id(db: AsyncSession, job_id: str):

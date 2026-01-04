@@ -6,7 +6,9 @@ export default defineConfig({
   server: {
     port: 5000,
     proxy: {
-      '/api': 'http://localhost:8000',
+      '/bookings': 'http://localhost:8000',
+      '/docs': 'http://localhost:8000',
+      '/openapi.json': 'http://localhost:8000',
     },
   },
 });
