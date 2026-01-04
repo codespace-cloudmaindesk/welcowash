@@ -16,7 +16,7 @@ class DetailingJobService:
         Returns:
             DetailingService: The created DetailingService instance reflecting the persisted database state.
         """
-        job = DetailingService(**job_data.dict())
+        job = DetailingService(**job_data.model_dump())
         db.add(job)
         await db.commit()
         await db.refresh(job)
@@ -59,7 +59,6 @@ class DetailingJobService:
         Returns:
             A list of rows representing every record in the `detailing_service` table.
         """
-        from sqlalchemy import select
         result = await db.execute(select(DetailingService))
         return result.scalars().all()
 
