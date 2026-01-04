@@ -10,8 +10,8 @@ Full-stack starter project with:
 ### Docker
 docker-compose up --build
 
-- Frontend: http://localhost:5000
-- Backend: http://localhost:8000
+- Frontend: http://localhost (Port 80)
+- Backend: http://localhost:8000 (Internal, proxied via Frontend)
 
 ### Local Development
 
