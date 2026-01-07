@@ -7,9 +7,6 @@ on:
     branches: [ "main" ]
 
 jobs:
-  # -----------------------------
-  # 1. FRONTEND: Install & Verify
-  # -----------------------------
   frontend-verify:
     name: Frontend - Install & Verify
     runs-on: ubuntu-latest
@@ -38,9 +35,6 @@ jobs:
       - name: Lint
         run: npm run lint --if-present
 
-  # -----------------------------
-  # 2. FRONTEND: Build
-  # -----------------------------
   frontend-build:
     name: Frontend - Build
     runs-on: ubuntu-latest
@@ -65,9 +59,6 @@ jobs:
       - name: Build frontend
         run: npm run build
 
-  # -----------------------------
-  # 3. BACKEND: Install & Verify
-  # -----------------------------
   backend-verify:
     name: Backend - Install & Verify
     runs-on: ubuntu-latest
@@ -97,9 +88,6 @@ jobs:
           echo "No tests yet – backend verified"
           # later: pytest / flake8 / mypy
 
-  # -----------------------------
-  # 4. DEPLOY (MAIN ONLY)
-  # -----------------------------
   deploy:
     name: Deploy (Main Only)
     runs-on: ubuntu-latest
@@ -115,6 +103,6 @@ jobs:
 
       - name: Dummy deployment
         run: |
-          echo "🚀 Deploying WelcoWash..."
+          echo "Deploying WelcoWash..."
           echo "Frontend build and backend verified."
           echo "Replace this step with real deployment logic."
