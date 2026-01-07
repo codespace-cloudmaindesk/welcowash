@@ -5,13 +5,13 @@ import { Button } from '../components/ui/Button';
 import { ArrowRight, Play, Droplets, Map, CarTaxiFront } from 'lucide-react';
 import styles from './Home.module.css';
 import GallerySection from './Gallery';
-import { BookingModal } from '../components/BookingModal';
+import { BookingModal } from '../pages/Booking';
 
 // Move stats data outside the component for scalability
 export const STATS = [
   { id: 'washes', icon: Droplets, label: 'Washes Completed', targetValue: 1.5, suffix: 'M+', precision: 1 },
-  { id: 'cities', icon: Map, label: 'Cities Covered', targetValue: 50, suffix: '+', precision: 0 },
-  { id: 'satisfaction', icon: CarTaxiFront, label: 'Customer Satisfaction', targetValue: 98, suffix: '%', precision: 0 },
+  { id: 'cities', icon: Map, label: 'Cities Covered', targetValue: 53, suffix: '+', precision: 0 },
+  { id: 'satisfaction', icon: CarTaxiFront, label: 'Customer Satisfaction', targetValue: 98.5, suffix: '%', precision: 0 },
 ];
 
 const Home: React.FC = () => {

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Droplets } from 'lucide-react';
 import { cn } from '../../../lib/utils/utils';
-import { BookingModal } from '../../BookingModal';
+import { BookingModal } from '../../../pages/Booking';
 
 import { NAV_LINKS } from './Navbar.constants';
 import { navbarStyles as s } from './Navbar.styles';
