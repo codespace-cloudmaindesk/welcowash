@@ -4,6 +4,7 @@ using Abp.Domain.Repositories;
 using Abp.UI;
 using System;
 using System.Net;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using WelcoWash.Customers.Dto;
 using WelcoWash.Domain.Customers;
@@ -41,6 +42,14 @@ namespace WelcoWash.Customers
                 Logger.Error("Error creating customer", ex);
                 throw new UserFriendlyException($"Could not create Customer. Error: {ex.Message}", Abp.Logging.LogSeverity.Error);
             }
+        }
+
+        public async Task<List<CustomerDto>> GetActiveCustomersAsync()
+        {
+            var customers = await _repository.GetAllListAsync();
+            var customerDtos = ObjectMapper.Map<List<CustomerDto>>(customers);
+            return customerDtos;
+
         }
     }
 }

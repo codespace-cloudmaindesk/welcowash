@@ -67,6 +67,7 @@ namespace WelcoWash
             IocManager.RegisterAssemblyByConvention(typeof(WelcoWashWebCoreModule).GetAssembly());
         }
 
+
         public override void PostInitialize()
         {
             IocManager.Resolve<ApplicationPartManager>()
