@@ -15,7 +15,7 @@ namespace WelcoWash.Migrations
                 table: "Customers",
                 type: "bit",
                 nullable: false,
-                defaultValue: false);
+                defaultValue: true);
         }
 
         /// <inheritdoc />
