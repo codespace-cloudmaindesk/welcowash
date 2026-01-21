@@ -15,6 +15,10 @@ namespace WelcoWash.Customers.Dto
         public string? PhoneNumber { get; set; }
         #endregion
 
+        #region Business State
+        public bool IsActive { get; set; }
+        #endregion
+
         #region Navigation
         public long? UserId { get; set; }
         #endregion

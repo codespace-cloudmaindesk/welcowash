@@ -1,9 +1,11 @@
 ﻿using Abp.Application.Services;
 using Abp.Application.Services.Dto;
+using Microsoft.EntityFrameworkCore;
 using Abp.Domain.Repositories;
 using Abp.UI;
 using System;
 using System.Net;
+using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using WelcoWash.Customers.Dto;
@@ -46,10 +48,16 @@ namespace WelcoWash.Customers
 
         public async Task<List<CustomerDto>> GetActiveCustomersAsync()
         {
-            var customers = await _repository.GetAllListAsync();
-            var customerDtos = ObjectMapper.Map<List<CustomerDto>>(customers);
-            return customerDtos;
-
+            try
+            {
+                var activeCustomers = await _repository.GetAll().Where(c => c.IsActive).ToListAsync();
+                return ObjectMapper.Map<List<CustomerDto>>(activeCustomers);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error retrieving active customers", ex);
+                throw new UserFriendlyException($"Could not retrieve active customers. Error: {ex.Message}", Abp.Logging.LogSeverity.Error);
+            }
         }
     }
 }
