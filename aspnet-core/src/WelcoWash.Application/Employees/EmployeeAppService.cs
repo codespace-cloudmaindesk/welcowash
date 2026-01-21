@@ -1,10 +1,13 @@
 ﻿using Abp.Application.Services;
 using Abp.Application.Services.Dto;
+using Microsoft.EntityFrameworkCore;
 using Abp.Domain.Repositories;
 using Abp.UI;
 using System;
 using System.Net;
+using System.Linq;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 using WelcoWash.Domain.Employees;
 using WelcoWash.Employees.Dto;
 
@@ -40,6 +43,20 @@ namespace WelcoWash.Employees
             {
                 Logger.Error("Error creating employee", ex);
                 throw new UserFriendlyException($"Could not create Employee. Error: {ex.Message}", Abp.Logging.LogSeverity.Error);
+            }
+        }
+
+        public async Task<List<EmployeeDto>> GetActiveEmployeeAsync()
+        {
+            try
+            {
+                var activeEmployees = await _repository.GetAll().Where(e => e.IsActive).ToListAsync();
+                return ObjectMapper.Map<List<EmployeeDto>>(activeEmployees);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Error retrieving active employees", ex);
+                throw new UserFriendlyException($"Could not retrieve active employees. Error: {ex.Message}", Abp.Logging.LogSeverity.Error);
             }
         }
     }
