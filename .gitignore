@@ -15,6 +15,7 @@ build/
 
 # IDEs
 .vscode/
+.vs/
 .idea/
 *.swp
 
