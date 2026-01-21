@@ -8,6 +8,6 @@ namespace WelcoWash.Employees
 {
     public interface IEmployeeAppService : IAsyncCrudAppService<EmployeeDto, Guid>
     {
-        Task<List<EmployeeDto>> GetActiveEmployeeAsync();
+        Task<List<EmployeeDto>> GetActiveEmployeesAsync();
     }
 }

@@ -46,7 +46,7 @@ namespace WelcoWash.Employees
             }
         }
 
-        public async Task<List<EmployeeDto>> GetActiveEmployeeAsync()
+        public async Task<List<EmployeeDto>> GetActiveEmployeesAsync()
         {
             try
             {
