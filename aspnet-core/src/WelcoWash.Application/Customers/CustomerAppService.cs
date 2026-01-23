@@ -52,7 +52,8 @@ namespace WelcoWash.Customers
             {
                 var today = DateOnly.FromDateTime(DateTime.Now);
                 var activeCustomers = await _repository.GetAll()
-                    .Where(c => c.CustomerStatus == RefListCustomerStatus.Active && (c.AccountClosureDate == null || c.AccountClosureDate > today))
+                    .Where(c => c.CustomerStatus == RefListCustomerStatus.Active && (c.AccountStartDate == null || c.AccountStartDate <= today)
+                     && (c.AccountClosureDate == null || c.AccountClosureDate > today))
                     .ToListAsync();
 
                 return ObjectMapper.Map<List<CustomerDto>>(activeCustomers);
