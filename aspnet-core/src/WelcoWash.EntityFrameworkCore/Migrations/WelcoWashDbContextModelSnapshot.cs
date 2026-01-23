@@ -1601,7 +1601,7 @@ namespace WelcoWash.Migrations
                     b.Property<long?>("CreatorUserId")
                         .HasColumnType("bigint");
 
-                    b.Property<int>("CustomerStatus")
+                    b.Property<int?>("CustomerStatus")
                         .HasColumnType("int");
 
                     b.Property<long?>("DeleterUserId")
@@ -1666,7 +1666,7 @@ namespace WelcoWash.Migrations
                     b.Property<DateOnly?>("EmploymentStartDate")
                         .HasColumnType("date");
 
-                    b.Property<int>("EmploymentStatus")
+                    b.Property<int?>("EmploymentStatus")
                         .HasColumnType("int");
 
                     b.Property<string>("FirstName")
