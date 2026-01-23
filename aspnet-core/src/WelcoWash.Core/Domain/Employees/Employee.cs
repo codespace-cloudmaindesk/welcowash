@@ -15,7 +15,7 @@ namespace WelcoWash.Domain.Employees
         #region Employment Information
         public DateOnly? EmploymentStartDate { get; set; }
         public DateOnly? EmploymentEndDate { get; set; }
-        public RefListEmploymentStatus EmployementStatus { get; set; }
+        public RefListEmploymentStatus EmploymentStatus { get; set; }
         #endregion
     }
 }

@@ -18,6 +18,7 @@ namespace WelcoWash.Customers.Dto
         #region Account Information
         public DateOnly? AccountStartDate { get; set; }
         public DateOnly? AccountClosureDate { get; set; }
+        public RefListCustomerStatus? CustomerStatus { get; set; }
         #endregion
 
         #region Navigation
