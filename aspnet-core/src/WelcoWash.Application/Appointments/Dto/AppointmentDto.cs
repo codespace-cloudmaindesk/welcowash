@@ -1,6 +1,7 @@
 ﻿using Abp.Application.Services.Dto;
 using System;
 using WelcoWash.Domain.Appointments;
+using WelcoWash.Domain.Services;
 
 namespace WelcoWash.Appointments.Dto
 {
@@ -9,7 +10,7 @@ namespace WelcoWash.Appointments.Dto
         #region Details
         public DateTime ScheduledTime { get; set; }
         public RefListAppointmentStatus Status { get; set; }
-        public Guid ServiceId { get; set; }
+        public Service Service { get; set; }
         #endregion
 
         #region Relationships
