@@ -1,6 +1,7 @@
 ﻿using Abp.Application.Services.Dto;
 using Abp.Domain.Entities.Auditing;
 using System;
+using WelcoWash.Domain.Employees;
 
 namespace WelcoWash.Employees.Dto
 {
@@ -12,11 +13,11 @@ namespace WelcoWash.Employees.Dto
         public string? Email { get; set; }
         public string? PhoneNumber { get; set; }
         #endregion
- 
 
         #region Employment Information
         public DateOnly? EmploymentStartDate{ get; set; }
         public DateOnly? EmploymentEndDate { get; set; }
+        public RefListEmploymentStatus? EmploymentStatus { get; set; }
         #endregion
     }
 }

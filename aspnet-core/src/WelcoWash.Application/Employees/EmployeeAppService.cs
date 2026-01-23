@@ -52,7 +52,7 @@ namespace WelcoWash.Employees
             {
                 var today = DateOnly.FromDateTime(DateTime.Now);
                 var activeEmployees = await _repository.GetAll()
-                    .Where(e => e.EmployementStatus == RefListEmploymentStatus.Active && (e.EmploymentEndDate == null || e.EmploymentEndDate > today))
+                    .Where(e => e.EmploymentStatus == RefListEmploymentStatus.Active && (e.EmploymentEndDate == null || e.EmploymentEndDate > today))
                     .ToListAsync();
 
                 return ObjectMapper.Map<List<EmployeeDto>>(activeEmployees);
