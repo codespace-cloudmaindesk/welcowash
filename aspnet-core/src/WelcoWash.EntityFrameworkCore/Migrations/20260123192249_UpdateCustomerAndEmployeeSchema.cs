@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace WelcoWash.Migrations
 {
     /// <inheritdoc />
-    public partial class Add_Customer_Status : Migration
+    public partial class UpdateCustomerAndEmployeeSchema : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -28,25 +28,6 @@ namespace WelcoWash.Migrations
                 table: "Vehicles",
                 newName: "IX_Vehicles_CustomerId");
 
-            migrationBuilder.AddColumn<int>(
-                name: "EmployementStatus",
-                table: "Employees",
-                type: "int",
-                nullable: false,
-                defaultValue: 0);
-
-            migrationBuilder.AddColumn<DateOnly>(
-                name: "EmploymentEndDate",
-                table: "Employees",
-                type: "date",
-                nullable: true);
-
-            migrationBuilder.AddColumn<DateOnly>(
-                name: "EmploymentStartDate",
-                table: "Employees",
-                type: "date",
-                nullable: true);
-
             migrationBuilder.AddColumn<DateOnly>(
                 name: "AccountClosureDate",
                 table: "Customers",
@@ -63,13 +44,37 @@ namespace WelcoWash.Migrations
                 name: "CustomerStatus",
                 table: "Customers",
                 type: "int",
-                nullable: false,
-                defaultValue: 0);
+                nullable: true);
 
             migrationBuilder.AddPrimaryKey(
                 name: "PK_Vehicles",
                 table: "Vehicles",
                 column: "Id");
+
+            migrationBuilder.CreateTable(
+                name: "Employees",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    EmploymentStartDate = table.Column<DateOnly>(type: "date", nullable: true),
+                    EmploymentEndDate = table.Column<DateOnly>(type: "date", nullable: true),
+                    EmploymentStatus = table.Column<int>(type: "int", nullable: true),
+                    CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatorUserId = table.Column<long>(type: "bigint", nullable: true),
+                    LastModificationTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    LastModifierUserId = table.Column<long>(type: "bigint", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    DeleterUserId = table.Column<long>(type: "bigint", nullable: true),
+                    DeletionTime = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Employees", x => x.Id);
+                });
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Vehicles_Customers_CustomerId",
@@ -87,21 +92,12 @@ namespace WelcoWash.Migrations
                 name: "FK_Vehicles_Customers_CustomerId",
                 table: "Vehicles");
 
+            migrationBuilder.DropTable(
+                name: "Employees");
+
             migrationBuilder.DropPrimaryKey(
                 name: "PK_Vehicles",
                 table: "Vehicles");
-
-            migrationBuilder.DropColumn(
-                name: "EmployementStatus",
-                table: "Employees");
-
-            migrationBuilder.DropColumn(
-                name: "EmploymentEndDate",
-                table: "Employees");
-
-            migrationBuilder.DropColumn(
-                name: "EmploymentStartDate",
-                table: "Employees");
 
             migrationBuilder.DropColumn(
                 name: "AccountClosureDate",

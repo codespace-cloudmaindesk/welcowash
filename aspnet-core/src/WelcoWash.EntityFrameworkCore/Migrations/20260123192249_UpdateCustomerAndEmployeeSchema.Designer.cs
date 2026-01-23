@@ -12,8 +12,8 @@ using WelcoWash.EntityFrameworkCore;
 namespace WelcoWash.Migrations
 {
     [DbContext(typeof(WelcoWashDbContext))]
-    [Migration("20260121021321_Added_IsActive_Method")]
-    partial class Added_IsActive_Method
+    [Migration("20260123192249_UpdateCustomerAndEmployeeSchema")]
+    partial class UpdateCustomerAndEmployeeSchema
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -1592,11 +1592,20 @@ namespace WelcoWash.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<DateOnly?>("AccountClosureDate")
+                        .HasColumnType("date");
+
+                    b.Property<DateOnly?>("AccountStartDate")
+                        .HasColumnType("date");
+
                     b.Property<DateTime>("CreationTime")
                         .HasColumnType("datetime2");
 
                     b.Property<long?>("CreatorUserId")
                         .HasColumnType("bigint");
+
+                    b.Property<int?>("CustomerStatus")
+                        .HasColumnType("int");
 
                     b.Property<long?>("DeleterUserId")
                         .HasColumnType("bigint");
@@ -1609,9 +1618,6 @@ namespace WelcoWash.Migrations
 
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
@@ -1634,6 +1640,59 @@ namespace WelcoWash.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Customers");
+                });
+
+            modelBuilder.Entity("WelcoWash.Domain.Employees.Employee", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("DeleterUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateOnly?>("EmploymentEndDate")
+                        .HasColumnType("date");
+
+                    b.Property<DateOnly?>("EmploymentStartDate")
+                        .HasColumnType("date");
+
+                    b.Property<int?>("EmploymentStatus")
+                        .HasColumnType("int");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Employees");
                 });
 
             modelBuilder.Entity("WelcoWash.Domain.Vehicles.Vehicle", b =>
@@ -1664,7 +1723,7 @@ namespace WelcoWash.Migrations
 
                     b.HasIndex("CustomerId");
 
-                    b.ToTable("Vehicle");
+                    b.ToTable("Vehicles");
                 });
 
             modelBuilder.Entity("WelcoWash.MultiTenancy.Tenant", b =>
