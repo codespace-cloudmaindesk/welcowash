@@ -9,6 +9,12 @@ namespace WelcoWash.Appointments.Dto
         #region Details
         public DateTime ScheduledTime { get; set; }
         public RefListAppointmentStatus Status { get; set; }
+        public Guid ServiceId { get; set; }
+        #endregion
+
+        #region Relationships
+        public Guid CustomerId { get; set; }
+        public Guid VehicleId { get; set; }
         #endregion
     }
 }

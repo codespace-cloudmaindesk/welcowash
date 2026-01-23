@@ -22,7 +22,7 @@ namespace WelcoWash.Customers
             _repository = repository;
         }
 
-        public async override Task<CustomerDto> CreateAsync(CustomerDto input)
+        public override async Task<CustomerDto> CreateAsync(CustomerDto input)
         {
             try
             {
@@ -50,13 +50,20 @@ namespace WelcoWash.Customers
         {
             try
             {
-                var activeCustomers = await _repository.GetAll().Where(c => c.IsActive).ToListAsync();
+                var today = DateOnly.FromDateTime(DateTime.Now);
+                var activeCustomers = await _repository.GetAll()
+                    .Where(c => c.CustomerStatus == RefListCustomerStatus.Active && (c.AccountClosureDate == null || c.AccountClosureDate > today))
+                    .ToListAsync();
+
                 return ObjectMapper.Map<List<CustomerDto>>(activeCustomers);
             }
             catch (Exception ex)
             {
                 Logger.Error("Error retrieving active customers", ex);
-                throw new UserFriendlyException($"Could not retrieve active customers. Error: {ex.Message}", Abp.Logging.LogSeverity.Error);
+                throw new UserFriendlyException(
+                    $"Could not retrieve active customers. Error: {ex.Message}",
+                    Abp.Logging.LogSeverity.Error
+                );
             }
         }
     }

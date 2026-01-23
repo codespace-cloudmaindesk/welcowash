@@ -14,18 +14,15 @@ namespace WelcoWash.Domain.Customers
         public string PhoneNumber { get; set; }
         #endregion
 
-        #region Business State
-        public bool IsActive { get; protected set; } = true;
+        #region Account Information
+        public DateOnly? AccountStartDate { get; set; }
+        public DateOnly? AccountClosureDate { get; set; }
+        public RefListCustomerStatus CustomerStatus { get; set; }
         #endregion
 
         #region Navigation
         public ICollection<Vehicle> Vehicles { get; set; }
         public long UserId { get; set; }
-        #endregion
-
-        #region Domain Behavior
-        public void Deactivate(){ IsActive = false;}
-        public void Activate(){ IsActive = true;}
         #endregion
     }
 }
