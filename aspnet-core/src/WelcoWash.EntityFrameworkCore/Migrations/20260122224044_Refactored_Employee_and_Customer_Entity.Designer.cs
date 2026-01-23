@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WelcoWash.EntityFrameworkCore;
 
@@ -11,9 +12,11 @@ using WelcoWash.EntityFrameworkCore;
 namespace WelcoWash.Migrations
 {
     [DbContext(typeof(WelcoWashDbContext))]
-    partial class WelcoWashDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260122224044_Refactored_Employee_and_Customer_Entity")]
+    partial class Refactored_Employee_and_Customer_Entity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1589,20 +1592,11 @@ namespace WelcoWash.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateOnly?>("AccountClosureDate")
-                        .HasColumnType("date");
-
-                    b.Property<DateOnly?>("AccountStartDate")
-                        .HasColumnType("date");
-
                     b.Property<DateTime>("CreationTime")
                         .HasColumnType("datetime2");
 
                     b.Property<long?>("CreatorUserId")
                         .HasColumnType("bigint");
-
-                    b.Property<int>("CustomerStatus")
-                        .HasColumnType("int");
 
                     b.Property<long?>("DeleterUserId")
                         .HasColumnType("bigint");
@@ -1660,15 +1654,6 @@ namespace WelcoWash.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("EmployementStatus")
-                        .HasColumnType("int");
-
-                    b.Property<DateOnly?>("EmploymentEndDate")
-                        .HasColumnType("date");
-
-                    b.Property<DateOnly?>("EmploymentStartDate")
-                        .HasColumnType("date");
-
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
 
@@ -1720,7 +1705,7 @@ namespace WelcoWash.Migrations
 
                     b.HasIndex("CustomerId");
 
-                    b.ToTable("Vehicles");
+                    b.ToTable("Vehicle");
                 });
 
             modelBuilder.Entity("WelcoWash.MultiTenancy.Tenant", b =>

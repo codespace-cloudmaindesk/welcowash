@@ -22,7 +22,7 @@ namespace WelcoWash.Employees
             _repository = repository;
         }
 
-        public async override Task<EmployeeDto> CreateAsync(EmployeeDto input)
+        public override async Task<EmployeeDto> CreateAsync(EmployeeDto input)
         {
             try
             {
@@ -50,13 +50,20 @@ namespace WelcoWash.Employees
         {
             try
             {
-                var activeEmployees = await _repository.GetAll().Where(e => e.IsActive).ToListAsync();
+                var today = DateOnly.FromDateTime(DateTime.Now);
+                var activeEmployees = await _repository.GetAll()
+                    .Where(e => e.EmployementStatus == RefListEmploymentStatus.Active && (e.EmploymentEndDate == null || e.EmploymentEndDate > today))
+                    .ToListAsync();
+
                 return ObjectMapper.Map<List<EmployeeDto>>(activeEmployees);
             }
             catch (Exception ex)
             {
                 Logger.Error("Error retrieving active employees", ex);
-                throw new UserFriendlyException($"Could not retrieve active employees. Error: {ex.Message}", Abp.Logging.LogSeverity.Error);
+                throw new UserFriendlyException(
+                    $"Could not retrieve active employees. Error: {ex.Message}",
+                    Abp.Logging.LogSeverity.Error
+                );
             }
         }
     }
