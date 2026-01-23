@@ -16,9 +16,9 @@ namespace WelcoWash.Appointments.Dto
 
         #region Relationships
         [Required]
-        public Guid CustomerId { get; set; }
+        public Guid? CustomerId { get; set; }
         [Required]
-        public Guid VehicleId { get; set; }
+        public Guid? VehicleId { get; set; }
         #endregion
     }
 }
