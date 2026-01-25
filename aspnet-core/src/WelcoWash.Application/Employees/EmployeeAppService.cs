@@ -58,9 +58,9 @@ namespace WelcoWash.Employees
             }
             catch (Exception ex)
             {
-                Logger.Error("Error retrieving active employees", ex);
+                Logger.Error($"Error retrieving employees with status {status}", ex);
                 throw new UserFriendlyException(
-                    $"Could not retrieve active employees. Error: {ex.Message}",
+                    $"Could not retrieve employees with status {status}. Error: {ex.Message}",
                     Abp.Logging.LogSeverity.Error
                 );
             }

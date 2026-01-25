@@ -57,9 +57,9 @@ namespace WelcoWash.Customers
             }
             catch (Exception ex)
             {
-                Logger.Error("Error retrieving active customers", ex);
+                Logger.Error($"Error retrieving customers with status {status}", ex);
                 throw new UserFriendlyException(
-                    $"Could not retrieve active customers. Error: {ex.Message}",
+                    $"Could not retrieve customers with status {status}. Error: {ex.Message}",
                     Abp.Logging.LogSeverity.Error
                 );
             }
