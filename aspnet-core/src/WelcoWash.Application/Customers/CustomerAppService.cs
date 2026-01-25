@@ -46,17 +46,14 @@ namespace WelcoWash.Customers
             }
         }
 
-        public async Task<List<CustomerDto>> GetActiveCustomersAsync()
+        public async Task<List<CustomerDto>> GetCustomerByStatusAsync( RefListCustomerStatus status)
         {
             try
             {
-                var today = DateOnly.FromDateTime(DateTime.Now);
-                var activeCustomers = await _repository.GetAll()
-                    .Where(c => c.CustomerStatus == RefListCustomerStatus.Active && (c.AccountStartDate == null || c.AccountStartDate <= today)
-                     && (c.AccountClosureDate == null || c.AccountClosureDate > today))
+               var customers = await _repository.GetAll()
+                    .Where(c => c.CustomerStatus == status)
                     .ToListAsync();
-
-                return ObjectMapper.Map<List<CustomerDto>>(activeCustomers);
+                return ObjectMapper.Map<List<CustomerDto>>(customers);
             }
             catch (Exception ex)
             {
