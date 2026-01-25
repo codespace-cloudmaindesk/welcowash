@@ -254,3 +254,9 @@ paket-files/
 src/WelcoWash.Web.Mvc/secrets.json
 src/WelcoWash.Web.Host/secrets.json
 src/WelcoWash.Migrator/secrets.json
+
+# Ignore the App_Data logs
+App_Data/Logs/
+ 
+
+	

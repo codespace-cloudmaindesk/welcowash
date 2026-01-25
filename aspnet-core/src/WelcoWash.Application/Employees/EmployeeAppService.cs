@@ -46,17 +46,15 @@ namespace WelcoWash.Employees
             }
         }
 
-        public async Task<List<EmployeeDto>> GetActiveEmployeesAsync()
+        public async Task<List<EmployeeDto>> GetEmployeeByStatusAsync( RefListEmploymentStatus status)
         {
             try
             {
-                var today = DateOnly.FromDateTime(DateTime.Now);
-                var activeEmployees = await _repository.GetAll()
-                    .Where(e => e.EmploymentStatus == RefListEmploymentStatus.Active && (e.EmploymentStartDate == null || e.EmploymentStartDate <= today)
-                     && (e.EmploymentEndDate == null || e.EmploymentEndDate > today))
+                var employees = await _repository.GetAll()
+                    .Where(e => e.EmploymentStatus == status)
                     .ToListAsync();
 
-                return ObjectMapper.Map<List<EmployeeDto>>(activeEmployees);
+                return ObjectMapper.Map<List<EmployeeDto>>(employees);
             }
             catch (Exception ex)
             {
