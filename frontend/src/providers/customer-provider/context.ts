@@ -18,6 +18,7 @@ export interface ICustomerStateContext {
     isSuccess: boolean;
     isError: boolean;
     error?: string;
+    customer?: ICustomer;
 }
 
 // ==================== CUSTOMER ACTION CONTEXT ====================
