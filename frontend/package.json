@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.2.4",
+    "@types/redux-actions": "^2.6.5",
     "axios": "^1.13.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
@@ -18,11 +19,13 @@
     "react-dom": "^18.2.0",
     "react-google-autocomplete": "^2.7.5",
     "react-router-dom": "^6.20.0",
+    "redux-actions": "^3.0.3",
     "tailwind-merge": "^3.4.0",
     "tailwindcss": "^4.1.18"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.18",
+    "@types/node": "^25.0.10",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^4.2.1",
