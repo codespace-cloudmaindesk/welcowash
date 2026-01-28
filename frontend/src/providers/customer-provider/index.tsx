@@ -20,16 +20,14 @@ export const CustomerProvider = ({
     const instance = axiosInstance();
 
     const createCustomer = async (customer: ICustomer) => {
-        dispatch(createCustomerPending());
-        const endpoint = "Customer/Create";
-        await instance
-      .post(endpoint, customer)
-      .then((response) => {
+      dispatch(createCustomerPending());
+      const endpoint = "Customer/Create";
+      try {
+        const response = await instance.post(endpoint, customer);
         dispatch(createCustomerSuccess(response.data.result));
-      })
-      .catch((err) => {
-        dispatch(createCustomerError(err.message));
-      });
+      } catch (error : any) {
+        dispatch(createCustomerError(error.message));
+      }
   };
 
     return (
