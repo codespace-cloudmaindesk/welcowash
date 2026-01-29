@@ -11,18 +11,18 @@ namespace WelcoWash.Customers.Dto
     [AutoMap(typeof(Customer))]
     public class CustomerDto : EntityDto<Guid>
     {
-        #region Details
+        `#region`Customer Details
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
         public string? Email { get; set; }
         public string? PhoneNumber { get; set; }
-        #endregion
+        `#endregion`
 
-        #region Navigation
+        `#region` Navigation
         public ICollection<VehicleDto>? Vehicles { get; set; }
         public ICollection<Guid>? VehicleIds { get; set; }
 
         public long? UserId { get; set; }
-        #endregion
+        `#endregion`
     }
 }

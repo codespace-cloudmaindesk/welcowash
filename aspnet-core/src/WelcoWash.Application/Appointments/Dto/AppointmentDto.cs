@@ -9,12 +9,12 @@ namespace WelcoWash.Appointments.Dto
     [AutoMap(typeof(Appointment))]
     public class AppointmentDto : EntityDto<Guid>
     {
-        #region Appointment Details
+        `#region` Appointment Details
         public Guid? CustomerId { get; set; }
         public Guid? VehicleId { get; set; }
         public ServiceOfferingDto? ServiceOffering { get; set; }
         public DateTime? ScheduledTime { get; set; }
         public RefListAppointmentStatus? Status { get; set; }
-        #endregion
+        `#endregion`
     }
 }
