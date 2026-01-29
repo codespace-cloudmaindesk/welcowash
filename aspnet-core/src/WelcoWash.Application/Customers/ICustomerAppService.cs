@@ -8,6 +8,5 @@ namespace WelcoWash.Customers
 {
     public interface ICustomerAppService : IAsyncCrudAppService<CustomerDto, Guid>
     {
-        Task<List<CustomerDto>> GetActiveCustomersAsync();
     }
 }

@@ -1,6 +1,13 @@
 import { INITIAL_STATE } from "@/src/lib/common/constants";
 import { createContext } from "react";
 
+// ==================== REFERENCE LIST ENUMS ====================
+export enum RefListGender {
+    Male = 1,
+    Female = 2,
+    Other = 3,
+    PreferNotToSay = 4,
+}
 
 // ==================== ENTITIES ====================
 export interface ICustomer {
