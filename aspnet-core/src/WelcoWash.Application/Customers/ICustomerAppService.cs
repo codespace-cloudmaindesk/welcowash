@@ -1,13 +1,11 @@
-﻿using Abp.Application.Services;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+using Abp.Application.Services;
 using WelcoWash.Customers.Dto;
+using System;
 
 namespace WelcoWash.Customers
 {
-    public interface ICustomerAppService : IAsyncCrudAppService<CustomerDto, Guid>
+    public interface ICustomerAppService
+        : IAsyncCrudAppService<CustomerDto, Guid>
     {
-        Task<List<CustomerDto>> GetActiveCustomersAsync();
     }
 }

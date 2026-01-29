@@ -2,43 +2,43 @@ using Abp.Application.Services;
 using Abp.Application.Services.Dto;
 using Abp.Domain.Repositories;
 using Abp.UI;
-using WelcoWash.Domain.Appointments;
-using WelcoWash.Appointments.Dto;
+using WelcoWash.Domain.Subscriptions;
+using WelcoWash.Subscriptions.Dto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WelcoWash.Appointments
+namespace WelcoWash.Subscriptions
 {
-    public class AppointmentAppService
-        : AsyncCrudAppService<Appointment, AppointmentDto, Guid, PagedAndSortedResultRequestDto, AppointmentDto, AppointmentDto>,
-          IAppointmentAppService
+    public class SubscriptionAppService
+        : AsyncCrudAppService<Subscription, SubscriptionDto, Guid, PagedAndSortedResultRequestDto, SubscriptionDto, SubscriptionDto>,
+          ISubscriptionAppService
     {
-        private readonly IRepository<Appointment, Guid> _appointmentRepository;
+        private readonly IRepository<Subscription, Guid> _subscriptionRepository;
 
-        public AppointmentAppService(IRepository<Appointment, Guid> appointmentRepository)
-            : base(appointmentRepository)
+        public SubscriptionAppService(IRepository<Subscription, Guid> subscriptionRepository)
+            : base(subscriptionRepository)
         {
-            _appointmentRepository = appointmentRepository;
+            _subscriptionRepository = subscriptionRepository;
         }
 
-        public override async Task<AppointmentDto> CreateAsync(AppointmentDto input)
+        public override async Task<SubscriptionDto> CreateAsync(SubscriptionDto input)
         {
             try
             {
                 if (input == null)
                 {
                     throw new UserFriendlyException(
-                        "Appointment data cannot be null.",
+                        "Subscription data cannot be null.",
                         Abp.Logging.LogSeverity.Warn
                     );
                 }
 
-                var entity = ObjectMapper.Map<Appointment>(input);
-                var result = await _appointmentRepository.InsertAsync(entity);
+                var entity = ObjectMapper.Map<Subscription>(input);
+                var result = await _subscriptionRepository.InsertAsync(entity);
 
-                return ObjectMapper.Map<AppointmentDto>(result);
+                return ObjectMapper.Map<SubscriptionDto>(result);
             }
             catch (UserFriendlyException)
             {
@@ -46,15 +46,15 @@ namespace WelcoWash.Appointments
             }
             catch (Exception ex)
             {
-                Logger.Error("Error creating Appointment", ex);
+                Logger.Error("Error creating Subscription", ex);
                 throw new UserFriendlyException(
-                    $"Could not create Appointment. Error: {ex.Message}",
+                    $"Could not create Subscription. Error: {ex.Message}",
                     Abp.Logging.LogSeverity.Error
                 );
             }
         }
 
-        public override async Task<PagedResultDto<AppointmentDto>> GetAllAsync(PagedAndSortedResultRequestDto input)
+        public override async Task<PagedResultDto<SubscriptionDto>> GetAllAsync(PagedAndSortedResultRequestDto input)
         {
             try
             {
@@ -67,44 +67,44 @@ namespace WelcoWash.Appointments
                          .Take(input.MaxResultCount)
                 );
 
-                return new PagedResultDto<AppointmentDto>(
+                return new PagedResultDto<SubscriptionDto>(
                     totalCount,
-                    ObjectMapper.Map<List<AppointmentDto>>(items)
+                    ObjectMapper.Map<List<SubscriptionDto>>(items)
                 );
             }
             catch (Exception ex)
             {
-                Logger.Error("Error retrieving Appointments", ex);
+                Logger.Error("Error retrieving Subscriptions", ex);
                 throw new UserFriendlyException(
-                    $"Could not retrieve Appointments. Error: {ex.Message}",
+                    $"Could not retrieve Subscriptions. Error: {ex.Message}",
                     Abp.Logging.LogSeverity.Error
                 );
             }
         }
 
-        public override async Task<AppointmentDto> GetAsync(EntityDto<Guid> input)
+        public override async Task<SubscriptionDto> GetAsync(EntityDto<Guid> input)
         {
             try
             {
                 if (input == null || input.Id == Guid.Empty)
                 {
                     throw new UserFriendlyException(
-                        "Invalid Appointment ID.",
+                        "Invalid Subscription ID.",
                         Abp.Logging.LogSeverity.Warn
                     );
                 }
 
-                var entity = await _appointmentRepository.GetAsync(input.Id);
+                var entity = await _subscriptionRepository.GetAsync(input.Id);
 
                 if (entity == null)
                 {
                     throw new UserFriendlyException(
-                        "Appointment not found.",
+                        "Subscription not found.",
                         Abp.Logging.LogSeverity.Warn
                     );
                 }
 
-                return ObjectMapper.Map<AppointmentDto>(entity);
+                return ObjectMapper.Map<SubscriptionDto>(entity);
             }
             catch (UserFriendlyException)
             {
@@ -112,31 +112,31 @@ namespace WelcoWash.Appointments
             }
             catch (Exception ex)
             {
-                Logger.Error($"Error retrieving Appointment with ID {input?.Id}", ex);
+                Logger.Error($"Error retrieving Subscription with ID {input?.Id}", ex);
                 throw new UserFriendlyException(
-                    $"Could not retrieve Appointment. Error: {ex.Message}",
+                    $"Could not retrieve Subscription. Error: {ex.Message}",
                     Abp.Logging.LogSeverity.Error
                 );
             }
         }
 
-        public override async Task<AppointmentDto> UpdateAsync(AppointmentDto input)
+        public override async Task<SubscriptionDto> UpdateAsync(SubscriptionDto input)
         {
             try
             {
                 if (input == null || input.Id == Guid.Empty)
                 {
                     throw new UserFriendlyException(
-                        "Invalid Appointment data.",
+                        "Invalid Subscription data.",
                         Abp.Logging.LogSeverity.Warn
                     );
                 }
 
-                var entity = await _appointmentRepository.GetAsync(input.Id);
+                var entity = await _subscriptionRepository.GetAsync(input.Id);
                 ObjectMapper.Map(input, entity);
 
-                var updated = await _appointmentRepository.UpdateAsync(entity);
-                return ObjectMapper.Map<AppointmentDto>(updated);
+                var updated = await _subscriptionRepository.UpdateAsync(entity);
+                return ObjectMapper.Map<SubscriptionDto>(updated);
             }
             catch (UserFriendlyException)
             {
@@ -144,9 +144,9 @@ namespace WelcoWash.Appointments
             }
             catch (Exception ex)
             {
-                Logger.Error($"Error updating Appointment with ID {input?.Id}", ex);
+                Logger.Error($"Error updating Subscription with ID {input?.Id}", ex);
                 throw new UserFriendlyException(
-                    $"Could not update Appointment. Error: {ex.Message}",
+                    $"Could not update Subscription. Error: {ex.Message}",
                     Abp.Logging.LogSeverity.Error
                 );
             }
@@ -159,12 +159,12 @@ namespace WelcoWash.Appointments
                 if (input == null || input.Id == Guid.Empty)
                 {
                     throw new UserFriendlyException(
-                        "Invalid Appointment ID.",
+                        "Invalid Subscription ID.",
                         Abp.Logging.LogSeverity.Warn
                     );
                 }
 
-                await _appointmentRepository.DeleteAsync(input.Id);
+                await _subscriptionRepository.DeleteAsync(input.Id);
             }
             catch (UserFriendlyException)
             {
@@ -172,9 +172,9 @@ namespace WelcoWash.Appointments
             }
             catch (Exception ex)
             {
-                Logger.Error($"Error deleting Appointment with ID {input?.Id}", ex);
+                Logger.Error($"Error deleting Subscription with ID {input?.Id}", ex);
                 throw new UserFriendlyException(
-                    $"Could not delete Appointment. Error: {ex.Message}",
+                    $"Could not delete Subscription. Error: {ex.Message}",
                     Abp.Logging.LogSeverity.Error
                 );
             }

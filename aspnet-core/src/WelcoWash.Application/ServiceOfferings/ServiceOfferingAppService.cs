@@ -2,43 +2,43 @@ using Abp.Application.Services;
 using Abp.Application.Services.Dto;
 using Abp.Domain.Repositories;
 using Abp.UI;
-using WelcoWash.Domain.Appointments;
-using WelcoWash.Appointments.Dto;
+using WelcoWash.Domain.ServiceOfferings;
+using WelcoWash.ServiceOfferings.Dto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WelcoWash.Appointments
+namespace WelcoWash.ServiceOfferings
 {
-    public class AppointmentAppService
-        : AsyncCrudAppService<Appointment, AppointmentDto, Guid, PagedAndSortedResultRequestDto, AppointmentDto, AppointmentDto>,
-          IAppointmentAppService
+    public class ServiceOfferingAppService
+        : AsyncCrudAppService<ServiceOffering, ServiceOfferingDto, Guid, PagedAndSortedResultRequestDto, ServiceOfferingDto, ServiceOfferingDto>,
+          IServiceOfferingAppService
     {
-        private readonly IRepository<Appointment, Guid> _appointmentRepository;
+        private readonly IRepository<ServiceOffering, Guid> _serviceOfferingRepository;
 
-        public AppointmentAppService(IRepository<Appointment, Guid> appointmentRepository)
-            : base(appointmentRepository)
+        public ServiceOfferingAppService(IRepository<ServiceOffering, Guid> serviceOfferingRepository)
+            : base(serviceOfferingRepository)
         {
-            _appointmentRepository = appointmentRepository;
+            _serviceOfferingRepository = serviceOfferingRepository;
         }
 
-        public override async Task<AppointmentDto> CreateAsync(AppointmentDto input)
+        public override async Task<ServiceOfferingDto> CreateAsync(ServiceOfferingDto input)
         {
             try
             {
                 if (input == null)
                 {
                     throw new UserFriendlyException(
-                        "Appointment data cannot be null.",
+                        "ServiceOffering data cannot be null.",
                         Abp.Logging.LogSeverity.Warn
                     );
                 }
 
-                var entity = ObjectMapper.Map<Appointment>(input);
-                var result = await _appointmentRepository.InsertAsync(entity);
+                var entity = ObjectMapper.Map<ServiceOffering>(input);
+                var result = await _serviceOfferingRepository.InsertAsync(entity);
 
-                return ObjectMapper.Map<AppointmentDto>(result);
+                return ObjectMapper.Map<ServiceOfferingDto>(result);
             }
             catch (UserFriendlyException)
             {
@@ -46,15 +46,15 @@ namespace WelcoWash.Appointments
             }
             catch (Exception ex)
             {
-                Logger.Error("Error creating Appointment", ex);
+                Logger.Error("Error creating ServiceOffering", ex);
                 throw new UserFriendlyException(
-                    $"Could not create Appointment. Error: {ex.Message}",
+                    $"Could not create ServiceOffering. Error: {ex.Message}",
                     Abp.Logging.LogSeverity.Error
                 );
             }
         }
 
-        public override async Task<PagedResultDto<AppointmentDto>> GetAllAsync(PagedAndSortedResultRequestDto input)
+        public override async Task<PagedResultDto<ServiceOfferingDto>> GetAllAsync(PagedAndSortedResultRequestDto input)
         {
             try
             {
@@ -67,44 +67,44 @@ namespace WelcoWash.Appointments
                          .Take(input.MaxResultCount)
                 );
 
-                return new PagedResultDto<AppointmentDto>(
+                return new PagedResultDto<ServiceOfferingDto>(
                     totalCount,
-                    ObjectMapper.Map<List<AppointmentDto>>(items)
+                    ObjectMapper.Map<List<ServiceOfferingDto>>(items)
                 );
             }
             catch (Exception ex)
             {
-                Logger.Error("Error retrieving Appointments", ex);
+                Logger.Error("Error retrieving ServiceOfferings", ex);
                 throw new UserFriendlyException(
-                    $"Could not retrieve Appointments. Error: {ex.Message}",
+                    $"Could not retrieve ServiceOfferings. Error: {ex.Message}",
                     Abp.Logging.LogSeverity.Error
                 );
             }
         }
 
-        public override async Task<AppointmentDto> GetAsync(EntityDto<Guid> input)
+        public override async Task<ServiceOfferingDto> GetAsync(EntityDto<Guid> input)
         {
             try
             {
                 if (input == null || input.Id == Guid.Empty)
                 {
                     throw new UserFriendlyException(
-                        "Invalid Appointment ID.",
+                        "Invalid ServiceOffering ID.",
                         Abp.Logging.LogSeverity.Warn
                     );
                 }
 
-                var entity = await _appointmentRepository.GetAsync(input.Id);
+                var entity = await _serviceOfferingRepository.GetAsync(input.Id);
 
                 if (entity == null)
                 {
                     throw new UserFriendlyException(
-                        "Appointment not found.",
+                        "ServiceOffering not found.",
                         Abp.Logging.LogSeverity.Warn
                     );
                 }
 
-                return ObjectMapper.Map<AppointmentDto>(entity);
+                return ObjectMapper.Map<ServiceOfferingDto>(entity);
             }
             catch (UserFriendlyException)
             {
@@ -112,31 +112,31 @@ namespace WelcoWash.Appointments
             }
             catch (Exception ex)
             {
-                Logger.Error($"Error retrieving Appointment with ID {input?.Id}", ex);
+                Logger.Error($"Error retrieving ServiceOffering with ID {input?.Id}", ex);
                 throw new UserFriendlyException(
-                    $"Could not retrieve Appointment. Error: {ex.Message}",
+                    $"Could not retrieve ServiceOffering. Error: {ex.Message}",
                     Abp.Logging.LogSeverity.Error
                 );
             }
         }
 
-        public override async Task<AppointmentDto> UpdateAsync(AppointmentDto input)
+        public override async Task<ServiceOfferingDto> UpdateAsync(ServiceOfferingDto input)
         {
             try
             {
                 if (input == null || input.Id == Guid.Empty)
                 {
                     throw new UserFriendlyException(
-                        "Invalid Appointment data.",
+                        "Invalid ServiceOffering data.",
                         Abp.Logging.LogSeverity.Warn
                     );
                 }
 
-                var entity = await _appointmentRepository.GetAsync(input.Id);
+                var entity = await _serviceOfferingRepository.GetAsync(input.Id);
                 ObjectMapper.Map(input, entity);
 
-                var updated = await _appointmentRepository.UpdateAsync(entity);
-                return ObjectMapper.Map<AppointmentDto>(updated);
+                var updated = await _serviceOfferingRepository.UpdateAsync(entity);
+                return ObjectMapper.Map<ServiceOfferingDto>(updated);
             }
             catch (UserFriendlyException)
             {
@@ -144,9 +144,9 @@ namespace WelcoWash.Appointments
             }
             catch (Exception ex)
             {
-                Logger.Error($"Error updating Appointment with ID {input?.Id}", ex);
+                Logger.Error($"Error updating ServiceOffering with ID {input?.Id}", ex);
                 throw new UserFriendlyException(
-                    $"Could not update Appointment. Error: {ex.Message}",
+                    $"Could not update ServiceOffering. Error: {ex.Message}",
                     Abp.Logging.LogSeverity.Error
                 );
             }
@@ -159,12 +159,12 @@ namespace WelcoWash.Appointments
                 if (input == null || input.Id == Guid.Empty)
                 {
                     throw new UserFriendlyException(
-                        "Invalid Appointment ID.",
+                        "Invalid ServiceOffering ID.",
                         Abp.Logging.LogSeverity.Warn
                     );
                 }
 
-                await _appointmentRepository.DeleteAsync(input.Id);
+                await _serviceOfferingRepository.DeleteAsync(input.Id);
             }
             catch (UserFriendlyException)
             {
@@ -172,9 +172,9 @@ namespace WelcoWash.Appointments
             }
             catch (Exception ex)
             {
-                Logger.Error($"Error deleting Appointment with ID {input?.Id}", ex);
+                Logger.Error($"Error deleting ServiceOffering with ID {input?.Id}", ex);
                 throw new UserFriendlyException(
-                    $"Could not delete Appointment. Error: {ex.Message}",
+                    $"Could not delete ServiceOffering. Error: {ex.Message}",
                     Abp.Logging.LogSeverity.Error
                 );
             }

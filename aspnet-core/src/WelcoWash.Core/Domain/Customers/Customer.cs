@@ -1,6 +1,7 @@
 ﻿using Abp.Domain.Entities.Auditing;
 using System;
 using System.Collections.Generic;
+using WelcoWash.Domain.Subscriptions;
 using WelcoWash.Domain.Vehicles;
 
 namespace WelcoWash.Domain.Customers
@@ -15,6 +16,7 @@ namespace WelcoWash.Domain.Customers
         #endregion
 
         #region Navigation
+        public Subscription Subscription { get; set; }
         public ICollection<Vehicle> Vehicles { get; set; }
         public long UserId { get; set; }
         #endregion
