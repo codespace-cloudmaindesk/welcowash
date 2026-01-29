@@ -10,10 +10,12 @@ namespace WelcoWash.Subscriptions.Dto
     [AutoMap(typeof(Subscription))]
     public class SubscriptionDto : EntityDto<Guid>
     {
-        public ReferenceListSubscriptionType Name { get; set; }
-        public double Price { get; set; }
-        public TimeSpan Duration { get; set; }
-        public ICollection<ServiceOfferingDto> IncludedServices { get; set; }
-        public string Description { get; set; }
+        # region Subscription Details
+        public ReferenceListSubscriptionType? Name { get; set; }
+        public double? Price { get; set; }
+        public TimeSpan? Duration { get; set; }
+        public ICollection<ServiceOfferingDto>? IncludedServices { get; set; }
+        public string? Description { get; set; }
+        # endregion
     }
 }

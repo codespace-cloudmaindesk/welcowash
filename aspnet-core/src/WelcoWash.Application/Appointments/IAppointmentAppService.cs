@@ -8,6 +8,6 @@ namespace WelcoWash.Appointments
     public interface IAppointmentAppService
         : IAsyncCrudAppService<AppointmentDto, Guid>
     {
-        Task<AppointmentDto> ConfirmAppointment(Guid input);
+        // Task<AppointmentDto> ConfirmAppointment(Guid input);
     }
 }
