@@ -8,12 +8,12 @@ namespace WelcoWash.Employees.Dto
     [AutoMap(typeof(Employee))]
     public class EmployeeDto : EntityDto<Guid>
     {
-        `#region` Employee Details
+        #region Employee Details
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
         public string? Email { get; set; }
         public string? Phone { get; set; }
         public long? UserId { get; set; }
-        `#endregion`
+        #endregion
     }
 }
