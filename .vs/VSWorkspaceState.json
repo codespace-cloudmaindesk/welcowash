@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\aspnet-core",
+    "\\aspnet-core\\src",
+    "\\aspnet-core\\src\\WelcoWash.Application",
+    "\\aspnet-core\\src\\WelcoWash.Application\\Appointments",
+    "\\aspnet-core\\src\\WelcoWash.Application\\Appointments\\Dto",
+    "\\aspnet-core\\src\\WelcoWash.Application\\Customers",
+    "\\aspnet-core\\src\\WelcoWash.Application\\Customers\\Dto",
+    "\\aspnet-core\\src\\WelcoWash.Application\\Employees",
+    "\\aspnet-core\\src\\WelcoWash.Application\\Employees\\Dto"
+  ],
+  "SelectedNode": "\\aspnet-core\\src\\WelcoWash.Application\\Appointments\\AppointmentAppService.cs",
+  "PreviewInSolutionExplorer": false
+}

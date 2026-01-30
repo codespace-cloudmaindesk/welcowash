@@ -1,0 +1,293 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\maila\\welcowash\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\maila\\welcowash\\aspnet-core\\src\\WelcoWash.Application\\Appointments\\AppointmentAppService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:aspnet-core\\src\\WelcoWash.Application\\Appointments\\AppointmentAppService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\maila\\welcowash\\aspnet-core\\src\\WelcoWash.Application\\Appointments\\IAppointmentAppService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:aspnet-core\\src\\WelcoWash.Application\\Appointments\\IAppointmentAppService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\maila\\welcowash\\aspnet-core\\src\\WelcoWash.Application\\Appointments\\Dto\\AppointmentDto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:aspnet-core\\src\\WelcoWash.Application\\Appointments\\Dto\\AppointmentDto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\maila\\welcowash\\aspnet-core\\src\\WelcoWash.Application\\Customers\\Dto\\CustomerDto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:aspnet-core\\src\\WelcoWash.Application\\Customers\\Dto\\CustomerDto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\maila\\welcowash\\aspnet-core\\src\\WelcoWash.Application\\Employees\\Dto\\EmployeeDto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:aspnet-core\\src\\WelcoWash.Application\\Employees\\Dto\\EmployeeDto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\maila\\welcowash\\aspnet-core\\src\\WelcoWash.Application\\ServiceOfferings\\Dto\\ServiceOfferingDto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:aspnet-core\\src\\WelcoWash.Application\\ServiceOfferings\\Dto\\ServiceOfferingDto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\maila\\welcowash\\aspnet-core\\src\\WelcoWash.Application\\Subscriptions\\Dto\\SubscriptionDto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:aspnet-core\\src\\WelcoWash.Application\\Subscriptions\\Dto\\SubscriptionDto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\maila\\welcowash\\aspnet-core\\src\\WelcoWash.Application\\Vehicles\\Dto\\VehicleDto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:aspnet-core\\src\\WelcoWash.Application\\Vehicles\\Dto\\VehicleDto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\maila\\welcowash\\aspnet-core\\src\\WelcoWash.Application\\Authorization\\Accounts\\Dto\\IsTenantAvailableOutput.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:aspnet-core\\src\\WelcoWash.Application\\Authorization\\Accounts\\Dto\\IsTenantAvailableOutput.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\maila\\welcowash\\aspnet-core\\src\\WelcoWash.Application\\Authorization\\Accounts\\Dto\\IsTenantAvailableInput.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:aspnet-core\\src\\WelcoWash.Application\\Authorization\\Accounts\\Dto\\IsTenantAvailableInput.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\maila\\welcowash\\frontend\\src\\providers\\customer-provider\\context.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\providers\\customer-provider\\context.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\maila\\welcowash\\frontend\\src\\providers\\customer-provider\\actions.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\providers\\customer-provider\\actions.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\maila\\welcowash\\frontend\\src\\providers\\customer-provider\\reducer.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\providers\\customer-provider\\reducer.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\maila\\welcowash\\frontend\\src\\providers\\customer-provider\\index.tsx||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\providers\\customer-provider\\index.tsx||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\maila\\welcowash\\aspnet-core\\src\\WelcoWash.Core\\Domain\\Customers\\Customer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:aspnet-core\\src\\WelcoWash.Core\\Domain\\Customers\\Customer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\maila\\welcowash\\aspnet-core\\src\\WelcoWash.Application\\Employees\\EmployeeAppService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:aspnet-core\\src\\WelcoWash.Application\\Employees\\EmployeeAppService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\maila\\welcowash\\frontend\\src\\providers\\appointment-provider\\actions.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\providers\\appointment-provider\\actions.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AppointmentAppService.cs",
+              "DocumentMoniker": "C:\\Users\\maila\\welcowash\\aspnet-core\\src\\WelcoWash.Application\\Appointments\\AppointmentAppService.cs",
+              "RelativeDocumentMoniker": "aspnet-core\\src\\WelcoWash.Application\\Appointments\\AppointmentAppService.cs",
+              "ToolTip": "C:\\Users\\maila\\welcowash\\aspnet-core\\src\\WelcoWash.Application\\Appointments\\AppointmentAppService.cs",
+              "RelativeToolTip": "aspnet-core\\src\\WelcoWash.Application\\Appointments\\AppointmentAppService.cs",
+              "ViewState": "AgIAABsBAAAAAAAAAAAAABsBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-29T19:01:27.869Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "IAppointmentAppService.cs",
+              "DocumentMoniker": "C:\\Users\\maila\\welcowash\\aspnet-core\\src\\WelcoWash.Application\\Appointments\\IAppointmentAppService.cs",
+              "RelativeDocumentMoniker": "aspnet-core\\src\\WelcoWash.Application\\Appointments\\IAppointmentAppService.cs",
+              "ToolTip": "C:\\Users\\maila\\welcowash\\aspnet-core\\src\\WelcoWash.Application\\Appointments\\IAppointmentAppService.cs",
+              "RelativeToolTip": "aspnet-core\\src\\WelcoWash.Application\\Appointments\\IAppointmentAppService.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAjwBQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-29T19:01:36.942Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AppointmentDto.cs",
+              "DocumentMoniker": "C:\\Users\\maila\\welcowash\\aspnet-core\\src\\WelcoWash.Application\\Appointments\\Dto\\AppointmentDto.cs",
+              "RelativeDocumentMoniker": "aspnet-core\\src\\WelcoWash.Application\\Appointments\\Dto\\AppointmentDto.cs",
+              "ToolTip": "C:\\Users\\maila\\welcowash\\aspnet-core\\src\\WelcoWash.Application\\Appointments\\Dto\\AppointmentDto.cs",
+              "RelativeToolTip": "aspnet-core\\src\\WelcoWash.Application\\Appointments\\Dto\\AppointmentDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-29T18:56:13.861Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "CustomerDto.cs",
+              "DocumentMoniker": "C:\\Users\\maila\\welcowash\\aspnet-core\\src\\WelcoWash.Application\\Customers\\Dto\\CustomerDto.cs",
+              "RelativeDocumentMoniker": "aspnet-core\\src\\WelcoWash.Application\\Customers\\Dto\\CustomerDto.cs",
+              "ToolTip": "C:\\Users\\maila\\welcowash\\aspnet-core\\src\\WelcoWash.Application\\Customers\\Dto\\CustomerDto.cs",
+              "RelativeToolTip": "aspnet-core\\src\\WelcoWash.Application\\Customers\\Dto\\CustomerDto.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-29T19:02:10.006Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "SubscriptionDto.cs",
+              "DocumentMoniker": "C:\\Users\\maila\\welcowash\\aspnet-core\\src\\WelcoWash.Application\\Subscriptions\\Dto\\SubscriptionDto.cs",
+              "RelativeDocumentMoniker": "aspnet-core\\src\\WelcoWash.Application\\Subscriptions\\Dto\\SubscriptionDto.cs",
+              "ToolTip": "C:\\Users\\maila\\welcowash\\aspnet-core\\src\\WelcoWash.Application\\Subscriptions\\Dto\\SubscriptionDto.cs",
+              "RelativeToolTip": "aspnet-core\\src\\WelcoWash.Application\\Subscriptions\\Dto\\SubscriptionDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-29T19:05:58.46Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ServiceOfferingDto.cs",
+              "DocumentMoniker": "C:\\Users\\maila\\welcowash\\aspnet-core\\src\\WelcoWash.Application\\ServiceOfferings\\Dto\\ServiceOfferingDto.cs",
+              "RelativeDocumentMoniker": "aspnet-core\\src\\WelcoWash.Application\\ServiceOfferings\\Dto\\ServiceOfferingDto.cs",
+              "ToolTip": "C:\\Users\\maila\\welcowash\\aspnet-core\\src\\WelcoWash.Application\\ServiceOfferings\\Dto\\ServiceOfferingDto.cs",
+              "RelativeToolTip": "aspnet-core\\src\\WelcoWash.Application\\ServiceOfferings\\Dto\\ServiceOfferingDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-29T19:05:17.976Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "VehicleDto.cs",
+              "DocumentMoniker": "C:\\Users\\maila\\welcowash\\aspnet-core\\src\\WelcoWash.Application\\Vehicles\\Dto\\VehicleDto.cs",
+              "RelativeDocumentMoniker": "aspnet-core\\src\\WelcoWash.Application\\Vehicles\\Dto\\VehicleDto.cs",
+              "ToolTip": "C:\\Users\\maila\\welcowash\\aspnet-core\\src\\WelcoWash.Application\\Vehicles\\Dto\\VehicleDto.cs",
+              "RelativeToolTip": "aspnet-core\\src\\WelcoWash.Application\\Vehicles\\Dto\\VehicleDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-29T19:06:47.35Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "EmployeeDto.cs",
+              "DocumentMoniker": "C:\\Users\\maila\\welcowash\\aspnet-core\\src\\WelcoWash.Application\\Employees\\Dto\\EmployeeDto.cs",
+              "RelativeDocumentMoniker": "aspnet-core\\src\\WelcoWash.Application\\Employees\\Dto\\EmployeeDto.cs",
+              "ToolTip": "C:\\Users\\maila\\welcowash\\aspnet-core\\src\\WelcoWash.Application\\Employees\\Dto\\EmployeeDto.cs",
+              "RelativeToolTip": "aspnet-core\\src\\WelcoWash.Application\\Employees\\Dto\\EmployeeDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-29T18:38:48.532Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "IsTenantAvailableOutput.cs",
+              "DocumentMoniker": "C:\\Users\\maila\\welcowash\\aspnet-core\\src\\WelcoWash.Application\\Authorization\\Accounts\\Dto\\IsTenantAvailableOutput.cs",
+              "RelativeDocumentMoniker": "aspnet-core\\src\\WelcoWash.Application\\Authorization\\Accounts\\Dto\\IsTenantAvailableOutput.cs",
+              "ToolTip": "C:\\Users\\maila\\welcowash\\aspnet-core\\src\\WelcoWash.Application\\Authorization\\Accounts\\Dto\\IsTenantAvailableOutput.cs",
+              "RelativeToolTip": "aspnet-core\\src\\WelcoWash.Application\\Authorization\\Accounts\\Dto\\IsTenantAvailableOutput.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-29T19:01:55.396Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "IsTenantAvailableInput.cs",
+              "DocumentMoniker": "C:\\Users\\maila\\welcowash\\aspnet-core\\src\\WelcoWash.Application\\Authorization\\Accounts\\Dto\\IsTenantAvailableInput.cs",
+              "RelativeDocumentMoniker": "aspnet-core\\src\\WelcoWash.Application\\Authorization\\Accounts\\Dto\\IsTenantAvailableInput.cs",
+              "ToolTip": "C:\\Users\\maila\\welcowash\\aspnet-core\\src\\WelcoWash.Application\\Authorization\\Accounts\\Dto\\IsTenantAvailableInput.cs",
+              "RelativeToolTip": "aspnet-core\\src\\WelcoWash.Application\\Authorization\\Accounts\\Dto\\IsTenantAvailableInput.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-29T19:01:50.13Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "context.ts",
+              "DocumentMoniker": "C:\\Users\\maila\\welcowash\\frontend\\src\\providers\\customer-provider\\context.ts",
+              "RelativeDocumentMoniker": "frontend\\src\\providers\\customer-provider\\context.ts",
+              "ToolTip": "C:\\Users\\maila\\welcowash\\frontend\\src\\providers\\customer-provider\\context.ts",
+              "RelativeToolTip": "frontend\\src\\providers\\customer-provider\\context.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2026-01-29T15:56:19.215Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "actions.ts",
+              "DocumentMoniker": "C:\\Users\\maila\\welcowash\\frontend\\src\\providers\\customer-provider\\actions.ts",
+              "RelativeDocumentMoniker": "frontend\\src\\providers\\customer-provider\\actions.ts",
+              "ToolTip": "C:\\Users\\maila\\welcowash\\frontend\\src\\providers\\customer-provider\\actions.ts",
+              "RelativeToolTip": "frontend\\src\\providers\\customer-provider\\actions.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2026-01-28T21:04:26.514Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "reducer.ts",
+              "DocumentMoniker": "C:\\Users\\maila\\welcowash\\frontend\\src\\providers\\customer-provider\\reducer.ts",
+              "RelativeDocumentMoniker": "frontend\\src\\providers\\customer-provider\\reducer.ts",
+              "ToolTip": "C:\\Users\\maila\\welcowash\\frontend\\src\\providers\\customer-provider\\reducer.ts",
+              "RelativeToolTip": "frontend\\src\\providers\\customer-provider\\reducer.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2026-01-29T15:56:57.087Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "index.tsx",
+              "DocumentMoniker": "C:\\Users\\maila\\welcowash\\frontend\\src\\providers\\customer-provider\\index.tsx",
+              "RelativeDocumentMoniker": "frontend\\src\\providers\\customer-provider\\index.tsx",
+              "ToolTip": "C:\\Users\\maila\\welcowash\\frontend\\src\\providers\\customer-provider\\index.tsx",
+              "RelativeToolTip": "frontend\\src\\providers\\customer-provider\\index.tsx",
+              "ViewState": "AgIAACAAAAAAAAAAAAAwwDsAAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2026-01-29T15:56:42.988Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Customer.cs",
+              "DocumentMoniker": "C:\\Users\\maila\\welcowash\\aspnet-core\\src\\WelcoWash.Core\\Domain\\Customers\\Customer.cs",
+              "RelativeDocumentMoniker": "aspnet-core\\src\\WelcoWash.Core\\Domain\\Customers\\Customer.cs",
+              "ToolTip": "C:\\Users\\maila\\welcowash\\aspnet-core\\src\\WelcoWash.Core\\Domain\\Customers\\Customer.cs",
+              "RelativeToolTip": "aspnet-core\\src\\WelcoWash.Core\\Domain\\Customers\\Customer.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABEAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-29T15:31:55.874Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "EmployeeAppService.cs",
+              "DocumentMoniker": "C:\\Users\\maila\\welcowash\\aspnet-core\\src\\WelcoWash.Application\\Employees\\EmployeeAppService.cs",
+              "RelativeDocumentMoniker": "aspnet-core\\src\\WelcoWash.Application\\Employees\\EmployeeAppService.cs",
+              "ToolTip": "C:\\Users\\maila\\welcowash\\aspnet-core\\src\\WelcoWash.Application\\Employees\\EmployeeAppService.cs",
+              "RelativeToolTip": "aspnet-core\\src\\WelcoWash.Application\\Employees\\EmployeeAppService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-29T15:23:35.089Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "actions.ts",
+              "DocumentMoniker": "C:\\Users\\maila\\welcowash\\frontend\\src\\providers\\appointment-provider\\actions.ts",
+              "RelativeDocumentMoniker": "frontend\\src\\providers\\appointment-provider\\actions.ts",
+              "ToolTip": "C:\\Users\\maila\\welcowash\\frontend\\src\\providers\\appointment-provider\\actions.ts",
+              "RelativeToolTip": "frontend\\src\\providers\\appointment-provider\\actions.ts",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2026-01-28T21:04:19.998Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
