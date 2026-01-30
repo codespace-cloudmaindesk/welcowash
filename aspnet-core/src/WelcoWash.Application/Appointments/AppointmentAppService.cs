@@ -33,8 +33,7 @@ namespace WelcoWash.Appointments
             if (appointmentId == Guid.Empty)
                 throw new UserFriendlyException("Invalid appointment ID.");
 
-            var appointment = await _appointmentRepository.GetAsync(appointmentId);
-
+            var appointment = await _appointmentRepository.FirstOrDefaultAsync(appointmentId);
             if (appointment == null)
                 throw new UserFriendlyException("Appointment not found.");
 
@@ -247,9 +246,14 @@ namespace WelcoWash.Appointments
         {
             try
             {
-                var appointment = await GetAppointmentOrThrowAsync(appointmentId);
-                var serviceOffering = await _serviceOfferingRepository.GetAsync(serviceOfferingId);
+                if (serviceOfferingId == Guid.Empty)
+                   throw new UserFriendlyException("Invalid service offering ID.", Abp.Logging.LogSeverity.Warn);
 
+                var appointment = await GetAppointmentOrThrowAsync(appointmentId);
+                var serviceOffering = await _serviceOfferingRepository.FirstOrDefaultAsync(x => x.Id == serviceOfferingId);
+                if (serviceOffering == null)
+                    throw new UserFriendlyException("Service offering not found.", Abp.Logging.LogSeverity.Warn);
+                
                 appointment.ServiceOffering = serviceOffering;
                 var updated = await _appointmentRepository.UpdateAsync(appointment);
                 return ObjectMapper.Map<AppointmentDto>(updated);
@@ -265,7 +269,9 @@ namespace WelcoWash.Appointments
         public async Task<AppointmentDto> LinkVehicleToAppointmentAsync(Guid appointmentId, Guid vehicleId)
         {
             try
-            {
+            {   
+                if (vehicleId == Guid.Empty)
+                    throw new UserFriendlyException("Invalid vehicle ID.", Abp.Logging.LogSeverity.Warn);
                 var appointment = await GetAppointmentOrThrowAsync(appointmentId);
 
                 appointment.VehicleId = vehicleId;
