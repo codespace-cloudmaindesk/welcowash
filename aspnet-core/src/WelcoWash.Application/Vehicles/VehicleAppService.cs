@@ -59,14 +59,14 @@ namespace WelcoWash.Vehicles
             try
             {
                 var query = Repository.GetAll();
+                query = ApplySorting(query, input);
                 var totalCount = await AsyncQueryableExecuter.CountAsync(query);
 
                 var items = await AsyncQueryableExecuter.ToListAsync(
-                    query.OrderBy(x => x.Id)
-                         .Skip(input.SkipCount)
+                    query.Skip(input.SkipCount)
                          .Take(input.MaxResultCount)
                 );
-
+                
                 return new PagedResultDto<VehicleDto>(
                     totalCount,
                     ObjectMapper.Map<List<VehicleDto>>(items)

@@ -1,4 +1,4 @@
-using Abp.Application.Services;
+﻿using Abp.Application.Services;
 using Abp.Application.Services.Dto;
 using Abp.Domain.Repositories;
 using Abp.UI;
@@ -59,11 +59,11 @@ namespace WelcoWash.Customers
             try
             {
                 var query = Repository.GetAll();
+                query = ApplySorting(query, input);
                 var totalCount = await AsyncQueryableExecuter.CountAsync(query);
 
                 var items = await AsyncQueryableExecuter.ToListAsync(
-                    query.OrderBy(x => x.Id)
-                         .Skip(input.SkipCount)
+                    query.Skip(input.SkipCount)
                          .Take(input.MaxResultCount)
                 );
 
