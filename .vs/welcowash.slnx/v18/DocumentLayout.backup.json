@@ -88,7 +88,7 @@
               "RelativeDocumentMoniker": "aspnet-core\\src\\WelcoWash.Application\\Appointments\\AppointmentAppService.cs",
               "ToolTip": "C:\\Users\\maila\\welcowash\\aspnet-core\\src\\WelcoWash.Application\\Appointments\\AppointmentAppService.cs",
               "RelativeToolTip": "aspnet-core\\src\\WelcoWash.Application\\Appointments\\AppointmentAppService.cs",
-              "ViewState": "AgIAADYBAAAAAAAAAAAkwD0BAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAALUAAAAAAAAAAAAAAL4AAABlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-01-29T19:01:27.869Z",
               "EditorCaption": ""
@@ -101,10 +101,9 @@
               "RelativeDocumentMoniker": "aspnet-core\\src\\WelcoWash.Application\\Appointments\\IAppointmentAppService.cs",
               "ToolTip": "C:\\Users\\maila\\welcowash\\aspnet-core\\src\\WelcoWash.Application\\Appointments\\IAppointmentAppService.cs",
               "RelativeToolTip": "aspnet-core\\src\\WelcoWash.Application\\Appointments\\IAppointmentAppService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAjwBQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-29T19:01:36.942Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-29T19:01:36.942Z"
             },
             {
               "$type": "Document",
@@ -116,8 +115,7 @@
               "RelativeToolTip": "aspnet-core\\src\\WelcoWash.Application\\Appointments\\Dto\\AppointmentDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAA0AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-29T18:56:13.861Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-29T18:56:13.861Z"
             },
             {
               "$type": "Document",
@@ -129,8 +127,7 @@
               "RelativeToolTip": "aspnet-core\\src\\WelcoWash.Application\\Customers\\Dto\\CustomerDto.cs",
               "ViewState": "AgIAAAkAAAAAAAAAAAAAABwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-29T19:02:10.006Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-29T19:02:10.006Z"
             },
             {
               "$type": "Document",

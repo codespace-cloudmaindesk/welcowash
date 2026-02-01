@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WelcoWash.EntityFrameworkCore;
 
@@ -11,9 +12,11 @@ using WelcoWash.EntityFrameworkCore;
 namespace WelcoWash.Migrations
 {
     [DbContext(typeof(WelcoWashDbContext))]
-    partial class WelcoWashDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260201121702_Updated_Appointment_Entity")]
+    partial class Updated_Appointment_Entity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1607,9 +1610,6 @@ namespace WelcoWash.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("IsSubsciriptionUsed")
-                        .HasColumnType("bit");
-
                     b.Property<DateTime?>("LastModificationTime")
                         .HasColumnType("datetime2");
 
@@ -1622,11 +1622,14 @@ namespace WelcoWash.Migrations
                     b.Property<DateTime>("ScheduledTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("ServiceOfferingId")
+                    b.Property<Guid>("ServiceOfferingId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
+
+                    b.Property<Guid?>("SubscriptionId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<double>("TotalPrice")
                         .HasColumnType("float");
@@ -2121,7 +2124,9 @@ namespace WelcoWash.Migrations
                 {
                     b.HasOne("WelcoWash.Domain.ServiceOfferings.ServiceOffering", "ServiceOffering")
                         .WithMany()
-                        .HasForeignKey("ServiceOfferingId");
+                        .HasForeignKey("ServiceOfferingId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("ServiceOffering");
                 });

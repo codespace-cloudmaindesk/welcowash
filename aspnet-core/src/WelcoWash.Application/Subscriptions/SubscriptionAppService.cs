@@ -2,182 +2,71 @@ using Abp.Application.Services;
 using Abp.Application.Services.Dto;
 using Abp.Domain.Repositories;
 using Abp.UI;
-using WelcoWash.Domain.Subscriptions;
-using WelcoWash.Subscriptions.Dto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WelcoWash.Domain.Subscriptions;
+using WelcoWash.Domain.ServiceOfferings;
+using WelcoWash.Subscriptions.Dto;
+using WelcoWash.ServiceOfferings.Dto;
 
 namespace WelcoWash.Subscriptions
 {
     public class SubscriptionAppService
-        : AsyncCrudAppService<Subscription, SubscriptionDto, Guid, PagedAndSortedResultRequestDto, SubscriptionDto, SubscriptionDto>,
+        : AsyncCrudAppService<
+            Subscription,
+            SubscriptionDto,
+            Guid,
+            PagedAndSortedResultRequestDto,
+            SubscriptionDto,
+            SubscriptionDto>,
           ISubscriptionAppService
     {
-        private readonly IRepository<Subscription, Guid> _subscriptionRepository;
+        private readonly IRepository<ServiceOffering, Guid> _serviceOfferingRepository;
 
-        public SubscriptionAppService(IRepository<Subscription, Guid> subscriptionRepository)
+        public SubscriptionAppService(
+            IRepository<Subscription, Guid> subscriptionRepository,
+            IRepository<ServiceOffering, Guid> serviceOfferingRepository)
             : base(subscriptionRepository)
         {
-            _subscriptionRepository = subscriptionRepository;
+            _serviceOfferingRepository = serviceOfferingRepository;
         }
 
-        public override async Task<SubscriptionDto> CreateAsync(SubscriptionDto input)
+        public async Task<SubscriptionDto> UpdatePriceAsync(Guid subscriptionId, double newPrice)
         {
-            try
-            {
-                if (input == null)
-                {
-                    throw new UserFriendlyException(
-                        "Subscription data cannot be null.",
-                        Abp.Logging.LogSeverity.Warn
-                    );
-                }
+            if (newPrice <= 0)
+                throw new UserFriendlyException("Subscription price must be greater than zero.");
 
-                var entity = ObjectMapper.Map<Subscription>(input);
-                var result = await _subscriptionRepository.InsertAsync(entity);
+            var subscription = await Repository.GetAsync(subscriptionId);
+            subscription.Price = newPrice;
 
-                return ObjectMapper.Map<SubscriptionDto>(result);
-            }
-            catch (UserFriendlyException)
-            {
-                throw;
-            }
-            catch (Exception ex)
-            {
-                Logger.Error("Error creating Subscription", ex);
-                throw new UserFriendlyException(
-                    $"Could not create Subscription. Error: {ex.Message}",
-                    Abp.Logging.LogSeverity.Error
-                );
-            }
+            await Repository.UpdateAsync(subscription);
+
+            return MapToEntityDto(subscription);
         }
 
-        public override async Task<PagedResultDto<SubscriptionDto>> GetAllAsync(PagedAndSortedResultRequestDto input)
+        public async Task<SubscriptionDto> UpdatePackageAsync(
+            Guid subscriptionId,
+            ICollection<Guid> serviceOfferingIds)
         {
-            try
-            {
-                var query = Repository.GetAll();
-                query = ApplySorting(query, input);
-                var totalCount = await AsyncQueryableExecuter.CountAsync(query);
+            if (serviceOfferingIds == null || !serviceOfferingIds.Any())
+                throw new UserFriendlyException("At least one service offering must be included.");
 
-                var items = await AsyncQueryableExecuter.ToListAsync(
-                    query.Skip(input.SkipCount)
-                         .Take(input.MaxResultCount)
-                );
+            var subscription = await Repository.GetAsync(subscriptionId);
 
-                return new PagedResultDto<SubscriptionDto>(
-                    totalCount,
-                    ObjectMapper.Map<List<SubscriptionDto>>(items)
-                );
-            }
-            catch (Exception ex)
-            {
-                Logger.Error("Error retrieving Subscriptions", ex);
-                throw new UserFriendlyException(
-                    $"Could not retrieve Subscriptions. Error: {ex.Message}",
-                    Abp.Logging.LogSeverity.Error
-                );
-            }
-        }
+            var services = await _serviceOfferingRepository.GetAllListAsync(
+                s => serviceOfferingIds.Contains(s.Id)
+            );
 
-        public override async Task<SubscriptionDto> GetAsync(EntityDto<Guid> input)
-        {
-            try
-            {
-                if (input == null || input.Id == Guid.Empty)
-                {
-                    throw new UserFriendlyException(
-                        "Invalid Subscription ID.",
-                        Abp.Logging.LogSeverity.Warn
-                    );
-                }
+            if (services.Count != serviceOfferingIds.Count)
+                throw new UserFriendlyException("One or more service offerings were not found.");
 
-                var entity = await _subscriptionRepository.GetAsync(input.Id);
+            subscription.IncludedServices = services;
 
-                if (entity == null)
-                {
-                    throw new UserFriendlyException(
-                        "Subscription not found.",
-                        Abp.Logging.LogSeverity.Warn
-                    );
-                }
+            await Repository.UpdateAsync(subscription);
 
-                return ObjectMapper.Map<SubscriptionDto>(entity);
-            }
-            catch (UserFriendlyException)
-            {
-                throw;
-            }
-            catch (Exception ex)
-            {
-                Logger.Error($"Error retrieving Subscription with ID {input?.Id}", ex);
-                throw new UserFriendlyException(
-                    $"Could not retrieve Subscription. Error: {ex.Message}",
-                    Abp.Logging.LogSeverity.Error
-                );
-            }
-        }
-
-        public override async Task<SubscriptionDto> UpdateAsync(SubscriptionDto input)
-        {
-            try
-            {
-                if (input == null || input.Id == Guid.Empty)
-                {
-                    throw new UserFriendlyException(
-                        "Invalid Subscription data.",
-                        Abp.Logging.LogSeverity.Warn
-                    );
-                }
-
-                var entity = await _subscriptionRepository.GetAsync(input.Id);
-                ObjectMapper.Map(input, entity);
-
-                var updated = await _subscriptionRepository.UpdateAsync(entity);
-                return ObjectMapper.Map<SubscriptionDto>(updated);
-            }
-            catch (UserFriendlyException)
-            {
-                throw;
-            }
-            catch (Exception ex)
-            {
-                Logger.Error($"Error updating Subscription with ID {input?.Id}", ex);
-                throw new UserFriendlyException(
-                    $"Could not update Subscription. Error: {ex.Message}",
-                    Abp.Logging.LogSeverity.Error
-                );
-            }
-        }
-
-        public override async Task DeleteAsync(EntityDto<Guid> input)
-        {
-            try
-            {
-                if (input == null || input.Id == Guid.Empty)
-                {
-                    throw new UserFriendlyException(
-                        "Invalid Subscription ID.",
-                        Abp.Logging.LogSeverity.Warn
-                    );
-                }
-
-                await _subscriptionRepository.DeleteAsync(input.Id);
-            }
-            catch (UserFriendlyException)
-            {
-                throw;
-            }
-            catch (Exception ex)
-            {
-                Logger.Error($"Error deleting Subscription with ID {input?.Id}", ex);
-                throw new UserFriendlyException(
-                    $"Could not delete Subscription. Error: {ex.Message}",
-                    Abp.Logging.LogSeverity.Error
-                );
-            }
+            return MapToEntityDto(subscription);
         }
     }
 }

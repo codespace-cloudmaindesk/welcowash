@@ -8,13 +8,13 @@ namespace WelcoWash.Appointments
     public interface IAppointmentAppService
         : IAsyncCrudAppService<AppointmentDto, Guid>
     {
-        Task<AppointmentDto> ConfirmScheduledAppointmentAsync(Guid appointmentId);
-        Task<AppointmentDto> RescheduleAppointmentAsync(Guid appointmentId, DateTime newScheduledTime);
-        Task<AppointmentDto> CancelScheduledAppointmentAsync(Guid appointmentId, string reason);
-        Task<AppointmentDto> MarkAppointmentAsCompletedAsync(Guid appointmentId);
-        Task<AppointmentDto> RecordCustomerNoShowAsync(Guid appointmentId);
+        Task<AppointmentDto> ConfirmAsync(Guid appointmentId);
+        Task<AppointmentDto> ScheduleAsync(Guid appointmentId, DateTime newScheduledTime);
+        Task<AppointmentDto> CancelAsync(Guid appointmentId, string reason);
+        Task<AppointmentDto> CompleteAsync(Guid appointmentId);
+        Task<AppointmentDto> MarkAsNoShowAsync(Guid appointmentId);
 
-        Task<AppointmentDto> AssignServiceToAppointmentAsync(Guid appointmentId,Guid serviceOfferingId);
-        Task<AppointmentDto> LinkVehicleToAppointmentAsync(Guid appointmentId,Guid vehicleId);
+        Task<AppointmentDto> AssignServiceAsync(Guid appointmentId,Guid serviceOfferingId);
+        Task<AppointmentDto> LinkVehicleAsync(Guid appointmentId,Guid vehicleId);
     }
 }

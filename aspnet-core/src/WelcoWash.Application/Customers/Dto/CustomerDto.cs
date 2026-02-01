@@ -19,7 +19,6 @@ namespace WelcoWash.Customers.Dto
         #endregion
 
         #region Navigation
-        public ICollection<VehicleDto>? Vehicles { get; set; }
         public ICollection<Guid>? VehicleIds { get; set; }
 
         public long? UserId { get; set; }

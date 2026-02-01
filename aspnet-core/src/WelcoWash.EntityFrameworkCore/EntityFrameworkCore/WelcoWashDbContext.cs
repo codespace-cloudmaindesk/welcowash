@@ -27,5 +27,33 @@ namespace WelcoWash.EntityFrameworkCore
             : base(options)
         {
         }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+
+            builder.Entity<Appointment>()
+                   .Property(a => a.Status)
+                   .HasConversion<int>();
+
+            builder.Entity<ServiceOffering>()
+                   .Property(s => s.Name)
+                   .HasConversion<int>();
+
+            builder.Entity<Subscription>()
+                   .Property(s => s.Name)
+                   .HasConversion<int>();
+
+            builder.Entity<Customer>()
+                   .HasIndex(c => c.Email)
+                   .IsUnique();
+
+            builder.Entity<Vehicle>()
+                   .HasIndex(v => v.LicensePlate)
+                   .IsUnique();
+
+            builder.Entity<Appointment>()
+                   .HasIndex(a => a.ScheduledTime);
+        }
     }
 }

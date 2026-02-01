@@ -4,13 +4,13 @@
     "\\aspnet-core",
     "\\aspnet-core\\src",
     "\\aspnet-core\\src\\WelcoWash.Application",
-    "\\aspnet-core\\src\\WelcoWash.Application\\Appointments",
-    "\\aspnet-core\\src\\WelcoWash.Application\\Appointments\\Dto",
-    "\\aspnet-core\\src\\WelcoWash.Application\\Customers",
-    "\\aspnet-core\\src\\WelcoWash.Application\\Customers\\Dto",
-    "\\aspnet-core\\src\\WelcoWash.Application\\Employees",
-    "\\aspnet-core\\src\\WelcoWash.Application\\Employees\\Dto"
+    "\\aspnet-core\\src\\WelcoWash.Application\\ServiceOfferings",
+    "\\aspnet-core\\src\\WelcoWash.Application\\ServiceOfferings\\Dto",
+    "\\aspnet-core\\src\\WelcoWash.Application\\Subscriptions",
+    "\\aspnet-core\\src\\WelcoWash.Application\\Subscriptions\\Dto",
+    "\\aspnet-core\\src\\WelcoWash.Application\\Vehicles",
+    "\\aspnet-core\\src\\WelcoWash.Application\\Vehicles\\Dto"
   ],
-  "SelectedNode": "\\aspnet-core\\src\\WelcoWash.Application\\Appointments\\AppointmentAppService.cs",
+  "SelectedNode": "\\aspnet-core\\src\\WelcoWash.Application\\Subscriptions\\SubscriptionAppService.cs",
   "PreviewInSolutionExplorer": false
 }
