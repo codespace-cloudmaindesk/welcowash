@@ -7,7 +7,8 @@ namespace WelcoWash.Appointments
 {
     public interface IAppointmentAppService
         : IAsyncCrudAppService<AppointmentDto, Guid>
-    {
+    {   
+        Task<AppointmentDto> StartAsync(Guid appointmentId);
         Task<AppointmentDto> ConfirmAsync(Guid appointmentId);
         Task<AppointmentDto> ScheduleAsync(Guid appointmentId, DateTime newScheduledTime);
         Task<AppointmentDto> CancelAsync(Guid appointmentId, string reason);

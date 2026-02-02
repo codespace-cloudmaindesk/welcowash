@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 using WelcoWash.Domain.Customers;
 using WelcoWash.Domain.Vehicles;
 using WelcoWash.Customers.Dto;
@@ -32,39 +33,41 @@ namespace WelcoWash.Customers
         {
             _vehicleRepository = vehicleRepository;
         }
+
+        private static void ValidateVehicleLink(Customer customer, Vehicle vehicle)
+        {
+             customer.Vehicles ??= new List<Vehicle>();
+
+            if (vehicle.CustomerId != Guid.Empty && vehicle.CustomerId != customer.Id)
+            {
+                throw new UserFriendlyException("Vehicle already linked to another customer.");
+            }
+
+            if (customer.Vehicles.Any(v => v.Id == vehicle.Id))
+            {
+                throw new UserFriendlyException("Vehicle already linked to this customer.");
+            }
+        }
         
         public async Task<CustomerDto> AddVehicleAsync(Guid customerId, Guid vehicleId)
         {
             var customer = await Repository
                 .GetAllIncluding(c => c.Vehicles)
-                .FirstOrDefaultAsync(c => c.Id == customerId);
+                .FirstOrDefaultAsync(c => c.Id == customerId)
+                ?? throw new EntityNotFoundException(typeof(Customer), customerId);
 
-            if (customer == null)
-            {
-                throw new EntityNotFoundException(typeof(Customer), customerId);
-            }
+                var vehicle = await _vehicleRepository.GetAsync(vehicleId);
 
-            var vehicle = await _vehicleRepository.FirstOrDefaultAsync(vehicleId);
-            if (vehicle == null)
-            {
-                throw new UserFriendlyException("Vehicle does not exist.");
-            }
+                ValidateVehicleLink(customer, vehicle);
 
-            customer.Vehicles ??= new System.Collections.Generic.List<Vehicle>();
+                vehicle.CustomerId = customerId;
+                customer.Vehicles.Add(vehicle);
 
-            if (customer.Vehicles.Any(v => v.Id == vehicleId))
-            {
-                throw new UserFriendlyException("Vehicle already linked to this customer.");
-            }
+                await Repository.UpdateAsync(customer);
 
-            customer.Vehicles.Add(vehicle);
-
-            await Repository.UpdateAsync(customer);
-
-            var dto = MapToEntityDto(customer);
-            dto.VehicleIds = customer.Vehicles.Select(v => v.Id).ToList();
-
-            return dto;
+                var dto = MapToEntityDto(customer);
+                dto.VehicleIds = customer.Vehicles.Select(v => v.Id).ToList();
+                return dto;
         }
     }
 }

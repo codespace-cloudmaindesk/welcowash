@@ -9,6 +9,7 @@ namespace WelcoWash.Domain.Appointments
         #region Details
         public Guid CustomerId { get; set; }
         public Guid VehicleId { get; set; }
+        public Guid ServiceOfferingId { get; set; }
         public ServiceOffering ServiceOffering { get; set; }
         public DateTime ScheduledTime { get; set; }
         public RefListAppointmentStatus Status { get; set; }

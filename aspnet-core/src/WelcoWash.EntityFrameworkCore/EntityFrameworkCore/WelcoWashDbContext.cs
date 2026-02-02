@@ -54,6 +54,12 @@ namespace WelcoWash.EntityFrameworkCore
 
             builder.Entity<Appointment>()
                    .HasIndex(a => a.ScheduledTime);
+
+            builder.Entity<Appointment>()
+                   .HasOne(a => a.ServiceOffering)
+                   .WithMany()
+                   .HasForeignKey(a => a.ServiceOfferingId)
+                   .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

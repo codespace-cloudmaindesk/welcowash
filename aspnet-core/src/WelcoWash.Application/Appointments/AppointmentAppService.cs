@@ -51,6 +51,12 @@ namespace WelcoWash.Appointments
             return MapToEntityDto(appointment);
         }
 
+        public Task<AppointmentDto> StartAsync(Guid appointmentId) =>
+            ChangeStatusAsync(
+                appointmentId,
+                RefListAppointmentStatus.InProgress,
+                RefListAppointmentStatus.Confirmed);
+    
         public Task<AppointmentDto> ConfirmAsync(Guid appointmentId) =>
             ChangeStatusAsync(
                 appointmentId,
@@ -118,6 +124,9 @@ namespace WelcoWash.Appointments
             Guid appointmentId,
             Guid serviceOfferingId)
         {
+            if (serviceOfferingId == Guid.Empty)
+                throw new UserFriendlyException("Invalid service offering ID.");
+            
             var appointment = await Repository.GetAsync(appointmentId);
             var serviceOffering =
                 await _serviceOfferingRepository.GetAsync(serviceOfferingId);
