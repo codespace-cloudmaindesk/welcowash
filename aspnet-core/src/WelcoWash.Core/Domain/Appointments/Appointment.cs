@@ -13,7 +13,7 @@ namespace WelcoWash.Domain.Appointments
         public ServiceOffering ServiceOffering { get; set; }
         public DateTime ScheduledTime { get; set; }
         public RefListAppointmentStatus Status { get; set; }
-        public bool IsSubsciriptionUsed { get; set; }
+        public bool IsSubscriptionUsed { get; set; }
         public string Notes { get; set; }
         public double TotalPrice { get; set; }
         #endregion

@@ -14,52 +14,27 @@ namespace WelcoWash.EntityFrameworkCore
 {
     public class WelcoWashDbContext : AbpZeroDbContext<Tenant, Role, User, WelcoWashDbContext>
     {
-        /* Define a DbSet for each entity of the application */
-        public DbSet<Appointment> Appointments { get; set; }
-        public DbSet<Customer> Customers { get; set; }
-        public DbSet<Employee> Employees { get; set; }
-        public DbSet<ServiceOffering> ServiceOfferings { get; set; }
-        public DbSet<Subscription> Subscriptions { get; set; }  
-        public DbSet<Vehicle> Vehicles { get; set; }
+       #region Domain Entities
+       public DbSet<Appointment> Appointments { get; set; }
+       public DbSet<Customer> Customers { get; set; }
+       public DbSet<Employee> Employees { get; set; }
+       public DbSet<ServiceOffering> ServiceOfferings { get; set; }
+       public DbSet<Subscription> Subscriptions { get; set; }  
+       public DbSet<Vehicle> Vehicles { get; set; }
+       #endregion
 
-
-        public WelcoWashDbContext(DbContextOptions<WelcoWashDbContext> options)
+       public WelcoWashDbContext(DbContextOptions<WelcoWashDbContext> options)
             : base(options)
-        {
-        }
+       {
+       }
 
-        protected override void OnModelCreating(ModelBuilder builder)
-        {
+       protected override void OnModelCreating(ModelBuilder builder)
+       {
             base.OnModelCreating(builder);
 
             builder.Entity<Appointment>()
                    .Property(a => a.Status)
                    .HasConversion<int>();
-
-            builder.Entity<ServiceOffering>()
-                   .Property(s => s.Name)
-                   .HasConversion<int>();
-
-            builder.Entity<Subscription>()
-                   .Property(s => s.Name)
-                   .HasConversion<int>();
-
-            builder.Entity<Customer>()
-                   .HasIndex(c => c.Email)
-                   .IsUnique();
-
-            builder.Entity<Vehicle>()
-                   .HasIndex(v => v.LicensePlate)
-                   .IsUnique();
-
-            builder.Entity<Appointment>()
-                   .HasIndex(a => a.ScheduledTime);
-
-            builder.Entity<Appointment>()
-                   .HasOne(a => a.ServiceOffering)
-                   .WithMany()
-                   .HasForeignKey(a => a.ServiceOfferingId)
-                   .OnDelete(DeleteBehavior.Restrict);
-        }
+       }
     }
 }

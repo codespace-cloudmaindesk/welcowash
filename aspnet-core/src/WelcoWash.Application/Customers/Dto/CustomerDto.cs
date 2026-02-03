@@ -20,6 +20,7 @@ namespace WelcoWash.Customers.Dto
 
         #region Navigation
         public ICollection<Guid>? VehicleIds { get; set; } = new List<Guid>();
+        public List<VehicleDto> Vehicles { get; set; } = new List<VehicleDto>();
 
         public long? UserId { get; set; }
         #endregion

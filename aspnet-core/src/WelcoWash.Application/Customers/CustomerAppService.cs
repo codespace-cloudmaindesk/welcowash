@@ -33,7 +33,7 @@ namespace WelcoWash.Customers
         {
             _vehicleRepository = vehicleRepository;
         }
-
+        
         private static void ValidateVehicleLink(Customer customer, Vehicle vehicle)
         {
              customer.Vehicles ??= new List<Vehicle>();
@@ -63,11 +63,9 @@ namespace WelcoWash.Customers
                 vehicle.CustomerId = customerId;
                 customer.Vehicles.Add(vehicle);
 
-                await Repository.UpdateAsync(customer);
+                await CurrentUnitOfWork.SaveChangesAsync();
 
-                var dto = MapToEntityDto(customer);
-                dto.VehicleIds = customer.Vehicles.Select(v => v.Id).ToList();
-                return dto;
+                return MapToEntityDto(customer);
         }
     }
 }
