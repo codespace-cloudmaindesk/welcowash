@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
+import { useAppointments } from '@/Providers/appointment-provider';
 import { X, Calendar, MapPin, User, CheckCircle, Loader2 } from 'lucide-react';
-import { createBooking } from '../services/api';
 
 interface BookingModalProps {
     isOpen: boolean;
@@ -8,6 +8,7 @@ interface BookingModalProps {
 }
 
 export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) => {
+    const { bookAppointment } = useAppointments();
     const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
     const [formData, setFormData] = useState({
         name: '',
@@ -23,7 +24,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) =
         setStatus('loading');
 
         try {
-            await createBooking({
+            await bookAppointment({
                 serviceId: formData.service,
                 date: formData.date,
                 location: formData.location,

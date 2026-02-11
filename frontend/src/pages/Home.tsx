@@ -1,11 +1,11 @@
 import React, { useState, useCallback } from 'react';
 import { Link } from 'react-router-dom';
-import { AnimatedCounter } from '../components/ui/animated-counter';
-import { Button } from '../components/ui/Button';
+import { AnimatedCounter } from '@/components/ui/animated-counter';
+import { Button } from '@/components/ui/Button';
 import { ArrowRight, Play, Droplets, Map, CarTaxiFront } from 'lucide-react';
 import styles from './Home.module.css';
 import GallerySection from './Gallery';
-import { BookingModal } from '../components/BookingModal';
+import { BookingModal } from '@/components/BookingModal';
 
 // Move stats data outside the component for scalability
 export const STATS = [

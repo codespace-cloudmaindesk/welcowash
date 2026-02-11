@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { Link } from 'react-router-dom';
 import { Sparkles, X, ChevronLeft, ChevronRight, Grid, Layers, ArrowRight } from 'lucide-react';
-import { Button } from '../components/ui/Button';
+import { Button } from '@/components/ui/Button';
 
 // Utility to handle dynamic imports in Vite
 const getImageUrl = (name: string) => new URL(`../assets/${name}`, import.meta.url).href;

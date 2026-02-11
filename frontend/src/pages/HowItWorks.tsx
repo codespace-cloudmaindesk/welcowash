@@ -30,15 +30,10 @@ const PROCESS_STEPS = [
   }
 ];
 
-import { checkBackendStatus } from '../services/api';
+
 
 export const HowItWorks: React.FC = () => {
-  // Verify Backend Connection on Mount
-  React.useEffect(() => {
-    checkBackendStatus().then(data => {
-      console.log("🔌 Backend Status:", data);
-    });
-  }, []);
+
 
   return (
     <section id="how-it-works" className="py-20 md:py-32 relative overflow-hidden bg-background">
