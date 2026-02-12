@@ -1,9 +1,9 @@
 export const navbarStyles = {
     layout: {
         root: 'fixed top-0 left-0 w-full z-[1000] transition-all duration-300',
-        top: 'h-28 bg-transparent',
+        top: 'h-24 bg-transparent',
         scrolled: 'h-16 bg-[#1e2233]/70 backdrop-blur-md shadow-lg',
-        inner: 'max-w-[1400px] w-[92%] lg:w-[85%] px-6 mx-auto flex items-center justify-between h-full relative z-50',
+        inner: 'max-w-[1400px] w-[92%] lg:w-[85%] px-6 mx-auto flex items-center justify-between h-full',
     },
 
     logo: {

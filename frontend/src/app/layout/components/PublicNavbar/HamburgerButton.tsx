@@ -15,7 +15,7 @@ export const HamburgerButton = ({ isOpen, onClick, className }: HamburgerButtonP
             aria-label={isOpen ? "Close menu" : "Open menu"}
         >
             <div className={cn(s.hamburger.line, isOpen && s.hamburger.rotate)} />
-            <div className={cn(s.hamburger.line, isOpen && "opacity-0")} />
+            <div className={cn(s.hamburger.line, isOpen && s.hamburger.opacity)} />
             <div className={cn(s.hamburger.line, isOpen && s.hamburger.rotateInverse)} />
         </button>
     );
