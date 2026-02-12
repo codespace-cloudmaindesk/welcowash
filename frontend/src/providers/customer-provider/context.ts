@@ -26,6 +26,7 @@ export interface ICustomerStateContext {
     isError: boolean;
     error?: string;
     customer?: ICustomer;
+    customers?: ICustomer[];
 }
 
 // ==================== CUSTOMER ACTION CONTEXT ====================
