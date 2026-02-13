@@ -5,6 +5,9 @@ import {
   createCustomerPending,
   createCustomerSuccess,
   createCustomerError,
+  getCustomersPending,
+  getCustomersSuccess,
+  getCustomersError,
 } from "./actions";
 
 import { axiosInstance } from "../../lib/utils/axiosInstance";
@@ -28,12 +31,25 @@ export const CustomerProvider = ({
       } catch (error : any) {
         dispatch(createCustomerError(error.message));
       }
+    };
+
+    const getCustomers = async () => {
+    dispatch(getCustomersPending());
+    const endpoint = "Customer/GetAll";
+    try {
+        const response = await instance.get(endpoint);
+        dispatch(getCustomersSuccess(response.data.result));
+    } catch (error: any) {
+        dispatch(getCustomersError(error.message));
+    }
+
   };
 
     return (
     <CustomerActionContext.Provider
       value={{
         createCustomer,
+        getCustomers,
       }}
     >
       <CustomerStateContext.Provider value={state}>
@@ -58,3 +74,4 @@ export const useCustomerActions = () => {
   }
   return context;
 };
+

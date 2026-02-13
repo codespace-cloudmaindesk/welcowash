@@ -32,6 +32,7 @@ export interface ICustomerStateContext {
 // ==================== CUSTOMER ACTION CONTEXT ====================
 export interface ICustomerActionContext {
     createCustomer: (customer: ICustomer) => Promise<void>;
+    getCustomers: () => Promise<void>;  
 }
 
 export const CustomerStateContext = createContext<ICustomerStateContext>(INITIAL_STATE);

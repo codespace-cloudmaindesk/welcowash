@@ -14,6 +14,11 @@ export const CustomerReducer = handleActions<
     [CustomerActionEnums.createCustomerPending]: mergePayloadHandler,
     [CustomerActionEnums.createCustomerSuccess]: mergePayloadHandler,
     [CustomerActionEnums.createCustomerError]: mergePayloadHandler,
+
+    // getCustomers
+    [CustomerActionEnums.getCustomersPending]: mergePayloadHandler,
+    [CustomerActionEnums.getCustomersSuccess]: mergePayloadHandler,
+    [CustomerActionEnums.getCustomersError]: mergePayloadHandler,
     },
   INITIAL_STATE
 );
