@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { createBooking, getAppointments, CreateBookingFormData } from '@/services/api';
-import { AppointmentStatus } from '@/lib/common/app-constants';
+import { AppointmentStatus } from '@/shared/lib/utils/constants';
 
 // Define the shape of an Appointment object
 // This should match the DTO returned from the backend

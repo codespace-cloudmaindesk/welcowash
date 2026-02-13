@@ -1,4 +1,4 @@
-import { INITIAL_STATE } from "@/lib/common/constants";
+import { INITIAL_STATE } from "@/shared/lib/utils/constants";
 import { createContext } from "react";
 
 // ==================== ENUMS ====================

@@ -157,15 +157,24 @@ namespace WelcoWash.Web.Host.Startup
                 {
                     var hostXmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                     var hostXmlPath = Path.Combine(AppContext.BaseDirectory, hostXmlFile);
-                    options.IncludeXmlComments(hostXmlPath);
+                    if (File.Exists(hostXmlPath))
+                    {
+                        options.IncludeXmlComments(hostXmlPath);
+                    }
 
                     var applicationXml = $"WelcoWash.Application.xml";
                     var applicationXmlPath = Path.Combine(AppContext.BaseDirectory, applicationXml);
-                    options.IncludeXmlComments(applicationXmlPath);
+                    if (File.Exists(applicationXmlPath))
+                    {
+                        options.IncludeXmlComments(applicationXmlPath);
+                    }
 
                     var webCoreXmlFile = $"WelcoWash.Web.Core.xml";
                     var webCoreXmlPath = Path.Combine(AppContext.BaseDirectory, webCoreXmlFile);
-                    options.IncludeXmlComments(webCoreXmlPath);
+                    if (File.Exists(webCoreXmlPath))
+                    {
+                        options.IncludeXmlComments(webCoreXmlPath);
+                    }
                 }
             });
         }

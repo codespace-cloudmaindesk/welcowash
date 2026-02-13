@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // Base URL from ASP.NET Core launchSettings.json
 // In production, this should come from environment variables
-const API_BASE_URL = '/api';
+const API_BASE_URL = 'https://localhost:44311/api';
 
 const axiosInstance = axios.create({
     baseURL: API_BASE_URL,

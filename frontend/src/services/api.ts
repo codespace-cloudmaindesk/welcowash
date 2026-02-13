@@ -1,5 +1,5 @@
 import axiosInstance from '@/lib/utils/axiosInstance';
-import { AppointmentStatus } from '@/lib/common/app-constants';
+import { AppointmentStatus } from '@/shared/lib/utils/constants';
 
 // --- Appointment Services ---
 

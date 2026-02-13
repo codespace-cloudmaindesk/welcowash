@@ -33,9 +33,7 @@ export enum ServiceName {
 };
 
 export interface BookingStep {
-    title: string;
-    description: string;
-
-    
+  title: string;
+  description: string;
 };
 

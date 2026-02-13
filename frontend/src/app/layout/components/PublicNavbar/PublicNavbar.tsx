@@ -9,8 +9,7 @@ import { SCROLL_THRESHOLD, PUBLIC_NAVBAR_LINKS } from "./PublicNavbar.constants"
 import { BookingCTAButton } from "./BookingCTAButton";
 import { navbarStyles as s } from "./PublicNavbar.styles";
 import { Droplets } from "lucide-react";
-import { BookingModal } from "@/components/BookingModal";
-// import { BookingModal } from "@/components/BookingModal";
+import { BookingModal } from "@/features/components/BookingModal/BookingModal";
 
 export const PublicNavbar = () => {
     const isScrolled = useScroll(SCROLL_THRESHOLD);

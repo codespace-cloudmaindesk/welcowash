@@ -11,3 +11,12 @@ export const BookingModalStyles = {
   button: "w-full bg-primary hover:bg-cyan-400 text-black font-bold py-4 rounded-xl mt-4 transition-all hover:shadow-[0_0_20px_rgba(6,182,212,0.4)] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2",
   successView: "p-12 text-center flex flex-col items-center animate-in zoom-in-95 duration-300",
 };
+
+export const StepIndicatorStyles = {
+  container: "flex items-center justify-between w-full mb-6",
+  step: "flex items-center flex-1",
+  number: "w-10 h-10 rounded-full flex items-center justify-center text-sm font-semibold",
+  line: "flex-1 h-0.5 mx-2",
+  label: "flex items-center",
+  icon: "w-4 h-4 mr-2",
+};

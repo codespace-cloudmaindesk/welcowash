@@ -1,7 +1,7 @@
 'use client'
 import { createAction } from 'redux-actions';
 import { IAppointment, IAppointmentStateContext } from './context';
-import { RequestState } from '../../lib/common/constants';
+import { RequestState } from '@/shared/lib/utils/constants';
 
 export enum AppointmentActionEnums {
 
