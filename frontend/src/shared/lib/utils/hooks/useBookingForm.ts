@@ -42,9 +42,16 @@ export const useBookingForm = () => {
         setStatus(BOOKING_STATUS.LOADING);
 
         try {
-            // ANEMIC PATTERN: Pass the raw form data. 
-            // Let the Provider handle the API transformation (serviceType -> serviceId, etc).
-            await bookAppointment(formData);
+            // ADAPTER PATTERN: Transform BookingFormData to CreateBookingFormData
+            // Map frontend form fields to API-expected fields
+            const apiPayload = {
+                serviceId: formData.serviceType,
+                date: formData.date,
+                location: formData.address,
+                contact: `${formData.name} | ${formData.phone} | ${formData.email}`,
+            };
+
+            await bookAppointment(apiPayload);
 
             setStatus(BOOKING_STATUS.SUCCESS);
             toast.success(BOOKING_MESSAGES.success.bookingConfirmed);

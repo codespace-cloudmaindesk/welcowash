@@ -1,11 +1,9 @@
 import { BookingStep } from "@/shared/lib/utils/constants";
 
 export const BOOKING_STEPS: readonly BookingStep[] = [
-  {title: "Service Selection",description: "Choose the service that best suits your needs.",},
-  {title: "Date & Time",description: "Select a date and time that works for you.",},
-  {title: "Location",description: "Enter your location for the service.",},
-  {title: "Contact Information",description: "Provide your contact information for the booking.",},
-  {title: "Confirmation",description: "Review your booking details and confirm.",},
+  { title: "Your Info", description: "Tell us who you are so we can reach you.", },
+  { title: "Schedule", description: "When and where would you like us to wash your vehicle?", },
+  { title: "Confirm", description: "Review your booking details and confirm.", },
 ] as const;
 
 export const BOOKING_MESSAGES = {
@@ -20,6 +18,7 @@ export interface BookingFormData {
   email: string;
   address: string;
   serviceType: string;
+  vehicleType: string;
   date: string;
   timeSlot: string;
   notes: string;
@@ -41,6 +40,7 @@ export const getInitialFormData = (): BookingFormData => ({
   email: "",
   address: "",
   serviceType: "",
+  vehicleType: "",
   date: "",
   timeSlot: "",
   notes: "",
@@ -48,19 +48,19 @@ export const getInitialFormData = (): BookingFormData => ({
 
 export const isStepValid = (stepIndex: number, formData: BookingFormData): boolean => {
   switch (stepIndex) {
-    case 0:
+    case 0: // Your Info
       return Boolean(formData.name && formData.phone && formData.email);
 
-    case 1:
-      return Boolean(formData.address);
+    case 1: // Schedule
+      return Boolean(
+        formData.address &&
+        formData.date &&
+        formData.timeSlot &&
+        formData.vehicleType &&
+        formData.serviceType
+      );
 
-    case 2:
-      return Boolean(formData.date && formData.timeSlot);
-
-    case 3:
-      return Boolean(formData.serviceType);
-
-    case 4:
+    case 2: // Confirm
       return true;
 
     default:
