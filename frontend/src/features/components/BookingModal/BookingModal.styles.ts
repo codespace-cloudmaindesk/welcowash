@@ -3,6 +3,20 @@ export const BookingModalStyles = {
   overlay: "fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/80 backdrop-blur-sm animate-in fade-in duration-200 sm:py-20",
   container: "flex flex-col p-4 sm:p-5 md:p-6 overflow-y-auto",
 
+  // Wrapper specific
+  wrapper: {
+    modal: "bg-[#0f172a] full sm:max-w-lg md:max-w-xl max-h-[90vh] sm:max-h-[75vh] shadow-2xl relative flex flex-col rounded-t-3xl sm:rounded-2xl sm:border sm:border-white/10 overflow-hidden pb-[env(safe-area-inset-bottom)] sm:pb-0",
+    dragHandle: {
+      container: "sm:hidden pt-3 pb-2 flex justify-center sticky top-0 bg-[#0f172a] z-10",
+      bar: "w-12 h-1.5 bg-gray-300 rounded-full"
+    },
+    closeButton: {
+      wrapper: "hidden sm:block absolute top-4 right-4 z-20 p-2 hover:bg-gray-100 rounded-full transition-colors text-gray-500 hover:text-gray-700",
+      icon: "w-5 h-5"
+    },
+    content: "flex-1 overflow-y-auto overscroll-contain"
+  },
+
   // Header
   header: {
     wrapper: "mb-5 sm:mb-6 md:mb-7 bg-gradient-to-r from-[#1e2233] to-[#2a3044] p-4 sm:p-5 -mx-4 sm:-mx-5 md:-mx-6 -mt-4 sm:-mt-5 md:-mt-6 rounded-t-3xl sm:rounded-t-2xl",
@@ -11,7 +25,13 @@ export const BookingModalStyles = {
   },
 
   // Close button
-  closeButton: "p-2 hover:bg-gray-100 rounded-full transition-colors text-gray-500 hover:text-gray-700",
+  closeButton: "p-2 hover:bg-white/10 rounded-full transition-colors text-white/70 hover:text-white",
+
+  // Content area
+  contentArea: {
+    container: "flex-1 min-h-[220px] sm:min-h-[280px] md:min-h-[320px] py-4 sm:py-5",
+    motionDiv: "h-full"
+  },
 
   // Form structure
   form: "space-y-5 sm:space-y-6",
@@ -20,7 +40,7 @@ export const BookingModalStyles = {
   field: "space-y-2.5",
 
   // Labels
-  label: "block text-sm font-medium text-gray-800 mb-1.5",
+  label: "block text-sm font-bold text-white/80 mb-2",
 
   // Input fields
   input: "w-full bg-gray-50 border border-gray-300 rounded-xl px-4 py-3 sm:py-3.5 text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-400/40 focus:border-cyan-400 transition-all text-sm sm:text-base",
@@ -45,7 +65,8 @@ export const BookingModalStyles = {
     buttonBase: "flex items-center justify-center gap-2 rounded-xl font-semibold uppercase tracking-wider transition-all text-sm disabled:opacity-50 disabled:cursor-not-allowed",
     backButton: "px-4 sm:px-5 py-3 sm:py-3.5 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-cyan-400 hover:text-cyan-600",
     continueButton: "ml-auto px-6 sm:px-8 py-3 sm:py-3.5 bg-gradient-to-r from-blue-500 to-cyan-400 text-white hover:scale-105 shadow-lg hover:shadow-cyan-400/50",
-    icon: "w-4 h-4 sm:w-5 sm:h-5"
+    icon: "w-4 h-4 sm:w-5 sm:h-5",
+    spinningIcon: "animate-spin"
   },
 
   // Buttons (for reference, though navigation is in main component)
@@ -53,6 +74,22 @@ export const BookingModalStyles = {
 
   // Success view
   successView: "p-8 sm:p-12 text-center flex flex-col items-center animate-in zoom-in-95 duration-300",
+
+  // Animations
+  animations: {
+    stepTransition: {
+      initial: { opacity: 0, x: 20 },
+      animate: { opacity: 1, x: 0 },
+      exit: { opacity: 0, x: -20 },
+      transition: { duration: 0.2 }
+    },
+    modalSlide: {
+      initial: { y: "100%" },
+      animate: { y: 0 },
+      exit: { y: "100%" },
+      transition: { type: "spring", damping: 30, stiffness: 300 }
+    }
+  }
 };
 
 export const StepIndicatorStyles = {
@@ -74,7 +111,14 @@ export const StepIndicatorStyles = {
     base: "w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-xs sm:text-sm font-bold border-2 transition-colors duration-200 z-10",
     active: "bg-black border-black text-white",
     completed: "bg-black border-black text-white",
-    pending: "bg-white border-gray-200 text-gray-400"
+    pending: "bg-white border-gray-200 text-gray-400",
+    // Color values for animation states
+    colors: {
+      activeBackground: "#003151  ",
+      pendingBackground: "#ffffff",
+      activeBorder: "#003151",
+      pendingBorder: "#e5e7eb"
+    }
   },
 
   // Icons and text
@@ -85,6 +129,7 @@ export const StepIndicatorStyles = {
   label: {
     base: "text-[9px] sm:text-[10px] uppercase tracking-wider font-semibold transition-colors duration-300",
     active: "text-black",
-    inactive: "text-gray-400"
+    inactive: "text-gray-400",
+    pending: "text-gray-400"
   }
 };

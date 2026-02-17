@@ -48,10 +48,10 @@ export const getInitialFormData = (): BookingFormData => ({
 
 export const isStepValid = (stepIndex: number, formData: BookingFormData): boolean => {
   switch (stepIndex) {
-    case 0: // Your Info
+    case 0: 
       return Boolean(formData.name && formData.phone && formData.email);
 
-    case 1: // Schedule
+    case 1: 
       return Boolean(
         formData.address &&
         formData.date &&
@@ -60,7 +60,7 @@ export const isStepValid = (stepIndex: number, formData: BookingFormData): boole
         formData.serviceType
       );
 
-    case 2: // Confirm
+    case 2:
       return true;
 
     default:

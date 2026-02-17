@@ -59,15 +59,12 @@ export const BookingModal = ({ isOpen, onClose }: BookingModalProps) => {
             </div>
 
             {/* Form Content with Animation */}
-            <div className="flex-1 min-h-[220px] sm:min-h-[280px] md:min-h-[320px] py-4 sm:py-5">
+            <div className={s.contentArea.container}>
               <AnimatePresence mode="wait">
                 <motion.div
                   key={currentStepIndex}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -20 }}
-                  transition={{ duration: 0.2 }}
-                  className="h-full"
+                  {...s.animations.stepTransition}
+                  className={s.contentArea.motionDiv}
                 >
                   {renderStepContent()}
                 </motion.div>
@@ -97,7 +94,7 @@ export const BookingModal = ({ isOpen, onClose }: BookingModalProps) => {
               >
                 {isLoading ? (
                   <>
-                    <Loader2 className={`${s.navigation.icon} animate-spin`} />
+                    <Loader2 className={`${s.navigation.icon} ${s.navigation.spinningIcon}`} />
                     <span>Processing...</span>
                   </>
                 ) : isLastStep ? (

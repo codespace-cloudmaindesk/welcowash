@@ -34,34 +34,29 @@ export const BookingModalWrapper = ({ isOpen, onClose, children }: BookingModalW
         <div className={s.overlay} onClick={onClose}>
             {/* Mobile: Bottom Sheet, Desktop: Centered Modal */}
             <motion.div
-                className="bg-white w-full sm:max-w-lg md:max-w-xl max-h-[90vh] sm:max-h-[75vh] shadow-2xl relative flex flex-col
-                   rounded-t-3xl sm:rounded-2xl sm:border sm:border-gray-200 overflow-hidden
-                   pb-[env(safe-area-inset-bottom)] sm:pb-0"
+                className={s.wrapper.modal}
                 onClick={(e) => e.stopPropagation()}
                 role="dialog"
                 aria-modal="true"
                 aria-labelledby="booking-modal-title"
-                initial={{ y: "100%" }}
-                animate={{ y: 0 }}
-                exit={{ y: "100%" }}
-                transition={{ type: "spring", damping: 30, stiffness: 300 }}
+                {...s.animations.modalSlide}
             >
                 {/* Drag Handle (Mobile Only) */}
-                <div className="sm:hidden pt-3 pb-2 flex justify-center sticky top-0 bg-white z-10">
-                    <div className="w-12 h-1.5 bg-gray-300 rounded-full" />
+                <div className={s.wrapper.dragHandle.container}>
+                    <div className={s.wrapper.dragHandle.bar} />
                 </div>
 
                 {/* Close Button (Desktop) */}
                 <button
                     onClick={onClose}
-                    className="hidden sm:block absolute top-4 right-4 z-20 p-2 hover:bg-gray-100 rounded-full transition-colors text-gray-500 hover:text-gray-700"
+                    className={s.wrapper.closeButton.wrapper}
                     aria-label="Close booking modal"
                 >
-                    <X className="w-5 h-5" />
+                    <X className={s.wrapper.closeButton.icon} />
                 </button>
 
                 {/* Modal Content - Scrollable */}
-                <div className="flex-1 overflow-y-auto overscroll-contain">
+                <div className={s.wrapper.content}>
                     {children}
                 </div>
             </motion.div>

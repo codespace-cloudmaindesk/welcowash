@@ -43,8 +43,8 @@ export const StepIndicator = ({ currentStep, steps }: StepIndicatorProps) => {
                 initial={false}
                 animate={{
                   scale: isActive ? 1.15 : 1,
-                  backgroundColor: isActive || isCompleted ? "#000000" : "#ffffff",
-                  borderColor: isActive || isCompleted ? "#000000" : "#e5e7eb",
+                  backgroundColor: isActive || isCompleted ? s.circle.colors.activeBackground : s.circle.colors.pendingBackground,
+                  borderColor: isActive || isCompleted ? s.circle.colors.activeBorder : s.circle.colors.pendingBorder,
                 }}
               >
                 {isCompleted ? (
