@@ -13,8 +13,8 @@ namespace WelcoWash.Appointments
         Task<AppointmentDto> ScheduleAsync(Guid appointmentId, DateTime newScheduledTime);
         Task<AppointmentDto> CancelAsync(Guid appointmentId, string reason);
         Task<AppointmentDto> CompleteAsync(Guid appointmentId);
+        Task<AppointmentDto> CancelAsync(Guid appointmentId);
         Task<AppointmentDto> MarkAsNoShowAsync(Guid appointmentId);
-
         Task<AppointmentDto> AssignServiceAsync(Guid appointmentId,Guid serviceOfferingId);
         Task<AppointmentDto> LinkVehicleAsync(Guid appointmentId,Guid vehicleId);
     }

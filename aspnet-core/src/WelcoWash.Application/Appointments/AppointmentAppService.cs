@@ -6,7 +6,9 @@ using System;
 using System.Threading.Tasks;
 using WelcoWash.Domain.Appointments;
 using WelcoWash.Domain.ServiceOfferings;
+using WelcoWash.Domain.Vehicles;
 using WelcoWash.Appointments.Dto;
+using Microsoft.EntityFrameworkCore;
 
 namespace WelcoWash.Appointments
 {
@@ -32,20 +34,13 @@ namespace WelcoWash.Appointments
 
         private async Task<AppointmentDto> ChangeStatusAsync(
             Guid appointmentId,
-            RefListAppointmentStatus newStatus,
-            RefListAppointmentStatus requiredCurrentStatus)
+            RefListAppointmentStatus newStatus)
         {
             var appointment = await Repository.GetAsync(appointmentId);
 
-            if (appointment.Status != requiredCurrentStatus)
-            {
-                throw new UserFriendlyException(
-                    $"Cannot change status from {appointment.Status} to {newStatus}."
-                );
-            }
+            AppointmentStatusRules.Validate(appointment.Status, newStatus);
 
             appointment.Status = newStatus;
-
             await Repository.UpdateAsync(appointment);
 
             return MapToEntityDto(appointment);
@@ -54,26 +49,26 @@ namespace WelcoWash.Appointments
         public Task<AppointmentDto> StartAsync(Guid appointmentId) =>
             ChangeStatusAsync(
                 appointmentId,
-                RefListAppointmentStatus.InProgress,
-                RefListAppointmentStatus.Confirmed);
+                RefListAppointmentStatus.InProgress
+            );
     
-        public Task<AppointmentDto> ConfirmAsync(Guid appointmentId) =>
+        public Task<AppointmentDto> ConfirmAsync(Guid appointmentId) => 
             ChangeStatusAsync(
                 appointmentId,
-                RefListAppointmentStatus.Confirmed,
-                RefListAppointmentStatus.Pending);
+                RefListAppointmentStatus.Confirmed
+            );
 
         public Task<AppointmentDto> CompleteAsync(Guid appointmentId) =>
             ChangeStatusAsync(
                 appointmentId,
-                RefListAppointmentStatus.Completed,
-                RefListAppointmentStatus.InProgress);
+                RefListAppointmentStatus.Completed
+            );
 
         public Task<AppointmentDto> MarkAsNoShowAsync(Guid appointmentId) =>
             ChangeStatusAsync(
                 appointmentId,
-                RefListAppointmentStatus.NoShow,
-                RefListAppointmentStatus.Confirmed);
+                RefListAppointmentStatus.NoShow
+            );
 
         public async Task<AppointmentDto> ScheduleAsync(
             Guid appointmentId,
@@ -81,13 +76,22 @@ namespace WelcoWash.Appointments
         {
             var appointment = await Repository.GetAsync(appointmentId);
 
-            if (appointment.Status is
-                RefListAppointmentStatus.Completed or
-                RefListAppointmentStatus.Cancelled)
+            if (!AppointmentStatusRules.CanTransitionTo(
+                    appointment.Status,
+                    appointment.Status)) 
             {
                 throw new UserFriendlyException(
                     $"Appointment cannot be rescheduled when status is {appointment.Status}."
                 );
+            }
+
+            if (appointment.Status is
+                RefListAppointmentStatus.Completed or
+                RefListAppointmentStatus.Cancelled or
+                RefListAppointmentStatus.NoShow)
+            {
+                throw new UserFriendlyException(
+                    $"Appointment cannot be rescheduled when status is {appointment.Status}.");
             }
 
             appointment.ScheduledTime = newScheduledTime;
@@ -101,23 +105,24 @@ namespace WelcoWash.Appointments
             Guid appointmentId,
             string reason)
         {
+            if (string.IsNullOrWhiteSpace(reason))
+                throw new UserFriendlyException("A cancellation reason is required.");
+            
             var appointment = await Repository.GetAsync(appointmentId);
-
-            if (appointment.Status == RefListAppointmentStatus.Completed)
-            {
-                throw new UserFriendlyException(
-                    "Completed appointments cannot be cancelled."
-                );
-            }
-
-            appointment.Status = RefListAppointmentStatus.Cancelled;
-            appointment.Notes = string.IsNullOrWhiteSpace(appointment.Notes)
-                ? $"Cancelled: {reason}"
-                : $"{appointment.Notes}\nCancelled: {reason}";
-
+            appointment.Notes = string.IsNullOrEmpty(appointment.Notes) 
+                ? $"Cancellation Reason: {reason}" 
+                : $"{appointment.Notes} | Cancellation Reason: {reason}";
             await Repository.UpdateAsync(appointment);
 
-            return MapToEntityDto(appointment);
+            return await ChangeStatusAsync(
+                appointmentId,
+                RefListAppointmentStatus.Cancelled);
+        }
+
+        [RemoteService(IsEnabled = false)]
+        public Task<AppointmentDto> CancelAsync(Guid appointmentId)
+        {
+            return CancelAsync(appointmentId, "Cancelled without reason provided");
         }
 
         public async Task<AppointmentDto> AssignServiceAsync(
@@ -128,10 +133,22 @@ namespace WelcoWash.Appointments
                 throw new UserFriendlyException("Invalid service offering ID.");
             
             var appointment = await Repository.GetAsync(appointmentId);
-            var serviceOffering =
-                await _serviceOfferingRepository.GetAsync(serviceOfferingId);
 
-            appointment.ServiceOffering = serviceOffering;
+            if (!AppointmentStatusRules.CanTransitionTo(
+                    appointment.Status,
+                    RefListAppointmentStatus.Confirmed) &&
+                appointment.Status != RefListAppointmentStatus.Pending)
+            {
+                throw new UserFriendlyException(
+                    $"Service cannot be assigned when appointment status is {appointment.Status}.");
+            }
+
+            if (!await _serviceOfferingRepository.GetAll()
+                    .AnyAsync(s => s.Id == serviceOfferingId))
+            {
+                throw new UserFriendlyException("Service offering not found.");
+            }
+            appointment.ServiceOfferingId = serviceOfferingId;
 
             await Repository.UpdateAsync(appointment);
 
@@ -142,7 +159,20 @@ namespace WelcoWash.Appointments
             Guid appointmentId,
             Guid vehicleId)
         {
+            if (vehicleId == Guid.Empty)
+                throw new UserFriendlyException("Invalid vehicle ID.");
+        
             var appointment = await Repository.GetAsync(appointmentId);
+
+            if (!AppointmentStatusRules.CanTransitionTo(
+                    appointment.Status,
+                    RefListAppointmentStatus.Confirmed) &&
+                appointment.Status != RefListAppointmentStatus.Pending)
+            {
+                throw new UserFriendlyException(
+                    $"Vehicle cannot be linked when appointment status is {appointment.Status}.");
+            }
+
             appointment.VehicleId = vehicleId;
 
             await Repository.UpdateAsync(appointment);
