@@ -23,13 +23,16 @@ namespace WelcoWash.Appointments
           IAppointmentAppService
     {
         private readonly IRepository<ServiceOffering, Guid> _serviceOfferingRepository;
+        private readonly IRepository<Vehicle, Guid> _vehicleRepository;
 
         public AppointmentAppService(
             IRepository<Appointment, Guid> repository,
-            IRepository<ServiceOffering, Guid> serviceOfferingRepository)
+            IRepository<ServiceOffering, Guid> serviceOfferingRepository,
+            IRepository<Vehicle, Guid> vehicleRepository)
             : base(repository)
         {
             _serviceOfferingRepository = serviceOfferingRepository;
+            _vehicleRepository = vehicleRepository;
         }
 
         private async Task<AppointmentDto> ChangeStatusAsync(
@@ -76,15 +79,6 @@ namespace WelcoWash.Appointments
         {
             var appointment = await Repository.GetAsync(appointmentId);
 
-            if (!AppointmentStatusRules.CanTransitionTo(
-                    appointment.Status,
-                    appointment.Status)) 
-            {
-                throw new UserFriendlyException(
-                    $"Appointment cannot be rescheduled when status is {appointment.Status}."
-                );
-            }
-
             if (appointment.Status is
                 RefListAppointmentStatus.Completed or
                 RefListAppointmentStatus.Cancelled or
@@ -109,14 +103,20 @@ namespace WelcoWash.Appointments
                 throw new UserFriendlyException("A cancellation reason is required.");
             
             var appointment = await Repository.GetAsync(appointmentId);
+
+            AppointmentStatusRules.Validate(
+                appointment.Status,
+                RefListAppointmentStatus.Cancelled);
+
             appointment.Notes = string.IsNullOrEmpty(appointment.Notes) 
                 ? $"Cancellation Reason: {reason}" 
                 : $"{appointment.Notes} | Cancellation Reason: {reason}";
+
+            appointment.Status = RefListAppointmentStatus.Cancelled;
+
             await Repository.UpdateAsync(appointment);
 
-            return await ChangeStatusAsync(
-                appointmentId,
-                RefListAppointmentStatus.Cancelled);
+            return MapToEntityDto(appointment);
         }
 
         [RemoteService(IsEnabled = false)]
@@ -163,6 +163,9 @@ namespace WelcoWash.Appointments
                 throw new UserFriendlyException("Invalid vehicle ID.");
         
             var appointment = await Repository.GetAsync(appointmentId);
+
+            if (!await _vehicleRepository.GetAll().AnyAsync(v => v.Id == vehicleId))
+                throw new UserFriendlyException("Vehicle not found.");
 
             if (!AppointmentStatusRules.CanTransitionTo(
                     appointment.Status,

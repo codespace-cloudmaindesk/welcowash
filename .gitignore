@@ -24,12 +24,8 @@ build/
 Thumbs.db
 
 # Logs
-<<<<<<< HEAD
 *.log
 
 # App Settings
 appsettings.json
 appsettings.*.json
-=======
-*.log
->>>>>>> origin/main
