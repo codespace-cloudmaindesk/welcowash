@@ -17,14 +17,19 @@ build/
 .vscode/
 .idea/
 *.swp
+.vs/
 
 # OS
 .DS_Store
 Thumbs.db
 
 # Logs
+<<<<<<< HEAD
 *.log
 
 # App Settings
 appsettings.json
 appsettings.*.json
+=======
+*.log
+>>>>>>> origin/main
