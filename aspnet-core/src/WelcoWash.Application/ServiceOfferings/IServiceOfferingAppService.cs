@@ -9,6 +9,6 @@ namespace WelcoWash.ServiceOfferings
         : IAsyncCrudAppService<ServiceOfferingDto, Guid>
     {
         Task<ServiceOfferingDto> SetAvailabilityAsync(Guid serviceId, bool isAvailable);
-        Task<ServiceOfferingDto> UpdatePriceAsync(Guid serviceId, double newPrice);
+        Task<ServiceOfferingDto> UpdatePriceAsync(Guid serviceId, decimal newPrice);
     }
 }
