@@ -9,7 +9,7 @@ namespace WelcoWash.Subscriptions
     public interface ISubscriptionAppService
         : IAsyncCrudAppService<SubscriptionDto, Guid>
     {
-        Task<SubscriptionDto> UpdatePriceAsync(Guid subscriptionId, double newPrice);
+        Task<SubscriptionDto> UpdatePriceAsync(Guid subscriptionId, decimal newPrice);
         Task<SubscriptionDto> UpdatePackageAsync(Guid subscriptionId, ICollection<Guid> serviceOfferingIds);
     }
 }
