@@ -164,8 +164,14 @@ namespace WelcoWash.Appointments
         
             var appointment = await Repository.GetAsync(appointmentId);
 
-            if (!await _vehicleRepository.GetAll().AnyAsync(v => v.Id == vehicleId))
+            var vehicle = await _vehicleRepository.GetAll()
+                .FirstOrDefaultAsync(v => v.Id == vehicleId);
+           
+            if (vehicle == null)
                 throw new UserFriendlyException("Vehicle not found.");
+
+            if (vehicle.CustomerId != Guid.Empty && vehicle.CustomerId != appointment.CustomerId)
+                throw new UserFriendlyException("Vehicle does not belong to the appointment customer.");
 
             if (!AppointmentStatusRules.CanTransitionTo(
                     appointment.Status,
