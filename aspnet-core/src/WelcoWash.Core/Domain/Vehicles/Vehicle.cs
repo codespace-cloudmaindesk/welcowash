@@ -1,5 +1,6 @@
 ﻿using Abp.Domain.Entities;
 using System;
+using WelcoWash.Domain.Customers;
 
 namespace WelcoWash.Domain.Vehicles
 {
@@ -11,5 +12,6 @@ namespace WelcoWash.Domain.Vehicles
         public int Year { get; set; }
         public string LicensePlate { get; set; }
         public Guid CustomerId { get; set; }
+        public Customer Customer { get; set; }
     }
 }

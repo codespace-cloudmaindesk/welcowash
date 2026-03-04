@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using WelcoWash.Domain.Customers;
 using WelcoWash.Domain.Vehicles;
 using WelcoWash.Customers.Dto;
+using WelcoWash.Vehicles.Dto;
 
 namespace WelcoWash.Customers
 {
@@ -24,48 +25,35 @@ namespace WelcoWash.Customers
             CustomerDto>,
           ICustomerAppService
     {
+        private readonly IRepository<Customer, Guid> _customerRepository;
         private readonly IRepository<Vehicle, Guid> _vehicleRepository;
 
+
         public CustomerAppService(
-            IRepository<Customer, Guid> repository,
+            IRepository<Customer, Guid> cutomerRepository,
             IRepository<Vehicle, Guid> vehicleRepository)
-            : base(repository)
+            : base(cutomerRepository)
         {
+            _customerRepository = cutomerRepository;
             _vehicleRepository = vehicleRepository;
         }
         
-        private static void ValidateVehicleLink(Customer customer, Vehicle vehicle)
-        {
-             customer.Vehicles ??= new List<Vehicle>();
-
-            if (vehicle.CustomerId != Guid.Empty && vehicle.CustomerId != customer.Id)
-            {
-                throw new UserFriendlyException("Vehicle already linked to another customer.");
-            }
-
-            if (customer.Vehicles.Any(v => v.Id == vehicle.Id))
-            {
-                throw new UserFriendlyException("Vehicle already linked to this customer.");
-            }
-        }
-        
-        public async Task<CustomerDto> AddVehicleAsync(Guid customerId, Guid vehicleId)
+        public async Task<CustomerDto> AddVehicleAsync(Guid customerId, VehicleDto vehicle)
         {
             var customer = await Repository
                 .GetAllIncluding(c => c.Vehicles)
                 .FirstOrDefaultAsync(c => c.Id == customerId)
                 ?? throw new EntityNotFoundException(typeof(Customer), customerId);
 
-                var vehicle = await _vehicleRepository.GetAsync(vehicleId);
-
-                ValidateVehicleLink(customer, vehicle);
+                
+                var vehicleEntity = ObjectMapper.Map<Vehicle>(vehicle);
 
                 vehicle.CustomerId = customerId;
-                customer.Vehicles.Add(vehicle);
+                customer.Vehicles.Add(vehicleEntity);
 
-                await CurrentUnitOfWork.SaveChangesAsync();
+                await _customerRepository.UpdateAsync(customer);
 
-                return MapToEntityDto(customer);
+                return ObjectMapper.Map<CustomerDto>(customer);
         }
     }
 }
