@@ -1,0 +1,15 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\aspnet-core",
+    "\\aspnet-core\\src",
+    "\\aspnet-core\\src\\WelcoWash.Application",
+    "\\aspnet-core\\src\\WelcoWash.Application\\ServiceOfferings\\Dto",
+    "\\aspnet-core\\src\\WelcoWash.Application\\Subscriptions\\Dto",
+    "\\aspnet-core\\src\\WelcoWash.Application\\Vehicles\\Dto",
+    "\\aspnet-core\\src\\WelcoWash.EntityFrameworkCore",
+    "\\aspnet-core\\src\\WelcoWash.EntityFrameworkCore\\Migrations"
+  ],
+  "SelectedNode": "\\aspnet-core\\src\\WelcoWash.EntityFrameworkCore\\Migrations\\20260202030735_AddServiceOfferingIdToAppointment.cs",
+  "PreviewInSolutionExplorer": false
+}

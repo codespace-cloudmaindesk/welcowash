@@ -1,46 +1,59 @@
 ﻿using Abp.Application.Services;
 using Abp.Application.Services.Dto;
 using Abp.Domain.Repositories;
+using Abp.Domain.Entities;
 using Abp.UI;
+using Microsoft.EntityFrameworkCore;
 using System;
-using System.Net;
+using System.Linq;
 using System.Threading.Tasks;
-using WelcoWash.Customers.Dto;
+using System.Collections.Generic;
 using WelcoWash.Domain.Customers;
+using WelcoWash.Domain.Vehicles;
+using WelcoWash.Customers.Dto;
+using WelcoWash.Vehicles.Dto;
 
 namespace WelcoWash.Customers
 {
-    public class CustomerAppService : AsyncCrudAppService<Customer, CustomerDto, Guid, PagedAndSortedResultRequestDto, CustomerDto, CustomerDto>, ICustomerAppService
+    public class CustomerAppService
+        : AsyncCrudAppService<
+            Customer,
+            CustomerDto,
+            Guid,
+            PagedAndSortedResultRequestDto,
+            CustomerDto,
+            CustomerDto>,
+          ICustomerAppService
     {
-        private readonly IRepository<Customer, Guid> _repository;
-        public CustomerAppService(IRepository<Customer, Guid> repository)
-            : base(repository)
+        private readonly IRepository<Customer, Guid> _customerRepository;
+        private readonly IRepository<Vehicle, Guid> _vehicleRepository;
+
+
+        public CustomerAppService(
+            IRepository<Customer, Guid> cutomerRepository,
+            IRepository<Vehicle, Guid> vehicleRepository)
+            : base(cutomerRepository)
         {
-            _repository = repository;
+            _customerRepository = cutomerRepository;
+            _vehicleRepository = vehicleRepository;
         }
-
-        public async override Task<CustomerDto> CreateAsync(CustomerDto input)
+        
+        public async Task<CustomerDto> AddVehicleAsync(Guid customerId, VehicleDto vehicle)
         {
-            try
-            {
-                if (input == null)
-                {
-                    throw new UserFriendlyException("Address data cannot be null.", Abp.Logging.LogSeverity.Warn);
-                }
+            var customer = await Repository
+                .GetAllIncluding(c => c.Vehicles)
+                .FirstOrDefaultAsync(c => c.Id == customerId)
+                ?? throw new EntityNotFoundException(typeof(Customer), customerId);
 
-                var address = ObjectMapper.Map<Customer>(input);
-                var result = await _repository.InsertAsync(address);
-                return ObjectMapper.Map<CustomerDto>(result);
-            }
-            catch (UserFriendlyException)
-            {
-                throw;
-            }
-            catch (Exception ex)
-            {
-                Logger.Error("Error creating customer", ex);
-                throw new UserFriendlyException($"Could not create Customer. Error: {ex.Message}", Abp.Logging.LogSeverity.Error);
-            }
+                
+                var vehicleEntity = ObjectMapper.Map<Vehicle>(vehicle);
+
+                vehicle.CustomerId = customerId;
+                customer.Vehicles.Add(vehicleEntity);
+
+                await _customerRepository.UpdateAsync(customer);
+
+                return ObjectMapper.Map<CustomerDto>(customer);
         }
     }
 }

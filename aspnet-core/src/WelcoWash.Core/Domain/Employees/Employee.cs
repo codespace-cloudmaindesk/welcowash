@@ -9,5 +9,6 @@ namespace WelcoWash.Domain.Employees
         public string LastName { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
+        public long UserId { get; set; }
     }
 }

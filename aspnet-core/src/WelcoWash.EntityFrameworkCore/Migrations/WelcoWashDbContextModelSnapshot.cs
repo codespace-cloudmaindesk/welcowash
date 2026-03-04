@@ -1583,7 +1583,123 @@ namespace WelcoWash.Migrations
                     b.ToTable("AbpUsers");
                 });
 
+            modelBuilder.Entity("WelcoWash.Domain.Appointments.Appointment", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<Guid>("CustomerId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<long?>("DeleterUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsSubscriptionUsed")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Notes")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("ScheduledTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("ServiceOfferingId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<double>("TotalPrice")
+                        .HasColumnType("float");
+
+                    b.Property<Guid>("VehicleId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ScheduledTime");
+
+                    b.HasIndex("ServiceOfferingId");
+
+                    b.ToTable("Appointments");
+                });
+
             modelBuilder.Entity("WelcoWash.Domain.Customers.Customer", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("DeleterUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("SubscriptionId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<long>("UserId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Email")
+                        .IsUnique()
+                        .HasFilter("[Email] IS NOT NULL");
+
+                    b.HasIndex("SubscriptionId");
+
+                    b.ToTable("Customers");
+                });
+
+            modelBuilder.Entity("WelcoWash.Domain.Employees.Employee", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -1619,7 +1735,7 @@ namespace WelcoWash.Migrations
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PhoneNumber")
+                    b.Property<string>("Phone")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<long>("UserId")
@@ -1627,7 +1743,61 @@ namespace WelcoWash.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Customers");
+                    b.ToTable("Employees");
+                });
+
+            modelBuilder.Entity("WelcoWash.Domain.ServiceOfferings.ServiceOffering", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("DurationInMinutes")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsAvailable")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("Name")
+                        .HasColumnType("int");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
+                    b.Property<Guid?>("SubscriptionId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SubscriptionId");
+
+                    b.ToTable("ServiceOfferings");
+                });
+
+            modelBuilder.Entity("WelcoWash.Domain.Subscriptions.Subscription", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<TimeSpan>("Duration")
+                        .HasColumnType("time");
+
+                    b.Property<int>("Name")
+                        .HasColumnType("int");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Subscriptions");
                 });
 
             modelBuilder.Entity("WelcoWash.Domain.Vehicles.Vehicle", b =>
@@ -1643,7 +1813,7 @@ namespace WelcoWash.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("LicensePlate")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Make")
                         .HasColumnType("nvarchar(max)");
@@ -1658,7 +1828,11 @@ namespace WelcoWash.Migrations
 
                     b.HasIndex("CustomerId");
 
-                    b.ToTable("Vehicle");
+                    b.HasIndex("LicensePlate")
+                        .IsUnique()
+                        .HasFilter("[LicensePlate] IS NOT NULL");
+
+                    b.ToTable("Vehicles");
                 });
 
             modelBuilder.Entity("WelcoWash.MultiTenancy.Tenant", b =>
@@ -1943,6 +2117,33 @@ namespace WelcoWash.Migrations
                     b.Navigation("LastModifierUser");
                 });
 
+            modelBuilder.Entity("WelcoWash.Domain.Appointments.Appointment", b =>
+                {
+                    b.HasOne("WelcoWash.Domain.ServiceOfferings.ServiceOffering", "ServiceOffering")
+                        .WithMany()
+                        .HasForeignKey("ServiceOfferingId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("ServiceOffering");
+                });
+
+            modelBuilder.Entity("WelcoWash.Domain.Customers.Customer", b =>
+                {
+                    b.HasOne("WelcoWash.Domain.Subscriptions.Subscription", "Subscription")
+                        .WithMany()
+                        .HasForeignKey("SubscriptionId");
+
+                    b.Navigation("Subscription");
+                });
+
+            modelBuilder.Entity("WelcoWash.Domain.ServiceOfferings.ServiceOffering", b =>
+                {
+                    b.HasOne("WelcoWash.Domain.Subscriptions.Subscription", null)
+                        .WithMany("IncludedServices")
+                        .HasForeignKey("SubscriptionId");
+                });
+
             modelBuilder.Entity("WelcoWash.Domain.Vehicles.Vehicle", b =>
                 {
                     b.HasOne("WelcoWash.Domain.Customers.Customer", null)
@@ -2053,6 +2254,11 @@ namespace WelcoWash.Migrations
             modelBuilder.Entity("WelcoWash.Domain.Customers.Customer", b =>
                 {
                     b.Navigation("Vehicles");
+                });
+
+            modelBuilder.Entity("WelcoWash.Domain.Subscriptions.Subscription", b =>
+                {
+                    b.Navigation("IncludedServices");
                 });
 #pragma warning restore 612, 618
         }
